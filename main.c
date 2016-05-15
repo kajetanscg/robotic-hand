@@ -4,7 +4,7 @@
 * Created on: 06/28/2014
 * Author: Gaetano Scognamiglio
 
-* Copyright© 2016 Gaetano Scognamiglio
+* Copyright© 2014 Gaetano Scognamiglio
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
