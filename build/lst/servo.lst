@@ -1,0 +1,2331 @@
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"servo.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.servoInit,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.global	servoInit
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	servoInit, %function
+  25              	servoInit:
+  26              	.LFB118:
+  27              		.file 1 "servo.c"
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 38B5     		push	{r3, r4, r5, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 3, -16
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 14, -4
+  40              		.loc 1 17 0
+  41 0002 0546     		mov	r5, r0
+  42              		.loc 1 19 0
+  43 0004 007B     		ldrb	r0, [r0, #12]	@ zero_extendqisi2
+  44              	.LVL1:
+  45 0006 40F20004 		movw	r4, #:lower16:.LANCHOR0
+  46 000a 411C     		adds	r1, r0, #1
+  47 000c C0F20004 		movt	r4, #:upper16:.LANCHOR0
+  48 0010 04EBC103 		add	r3, r4, r1, lsl #3
+  49 0014 0022     		movs	r2, #0
+  50 0016 0121     		movs	r1, #1
+  51 0018 1971     		strb	r1, [r3, #4]
+  52 001a 5A71     		strb	r2, [r3, #5]
+  53 001c 9A71     		strb	r2, [r3, #6]
+  54 001e DA71     		strb	r2, [r3, #7]
+  55 0020 1A72     		strb	r2, [r3, #8]
+  56 0022 5A72     		strb	r2, [r3, #9]
+  57 0024 9A72     		strb	r2, [r3, #10]
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 2
+
+
+  58 0026 DA72     		strb	r2, [r3, #11]
+  59              		.loc 1 21 0
+  60 0028 95E80900 		ldmia	r5, {r0, r3}
+  61 002c 4FF48172 		mov	r2, #258
+  62 0030 01FA03F1 		lsl	r1, r1, r3
+  63 0034 FFF7FEFF 		bl	_pal_lld_setgroupmode
+  64              	.LVL2:
+  65              		.loc 1 23 0
+  66 0038 A868     		ldr	r0, [r5, #8]
+  67 003a 2146     		mov	r1, r4
+  68              		.loc 1 24 0
+  69 003c BDE83840 		pop	{r3, r4, r5, lr}
+  70              		.loc 1 23 0
+  71 0040 FFF7FEBF 		b	pwmStart
+  72              	.LVL3:
+  73              		.cfi_endproc
+  74              	.LFE118:
+  75              		.size	servoInit, .-servoInit
+  76 0044 AFF30080 		.section	.text.servoSetValue,"ax",%progbits
+  76      AFF30080 
+  76      AFF30080 
+  77              		.align	2
+  78              		.p2align 4,,15
+  79              		.global	servoSetValue
+  80              		.thumb
+  81              		.thumb_func
+  82              		.type	servoSetValue, %function
+  83              	servoSetValue:
+  84              	.LFB119:
+  85              		.loc 1 26 0
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              		@ link register save eliminated.
+  90              	.LVL4:
+  91 0000 10B4     		push	{r4}
+  92              	.LCFI1:
+  93              		.cfi_def_cfa_offset 4
+  94              		.cfi_offset 4, -4
+  95              		.loc 1 26 0
+  96 0002 0346     		mov	r3, r0
+  97              		.loc 1 27 0
+  98 0004 028A     		ldrh	r2, [r0, #16]
+  99              		.loc 1 29 0
+ 100 0006 C489     		ldrh	r4, [r0, #14]
+ 101              		.loc 1 32 0
+ 102 0008 8068     		ldr	r0, [r0, #8]
+ 103              	.LVL5:
+ 104 000a 9142     		cmp	r1, r2
+ 105 000c 38BF     		it	cc
+ 106 000e 0A46     		movcc	r2, r1
+ 107              	.LVL6:
+ 108 0010 197B     		ldrb	r1, [r3, #12]	@ zero_extendqisi2
+ 109 0012 A242     		cmp	r2, r4
+ 110 0014 38BF     		it	cc
+ 111 0016 2246     		movcc	r2, r4
+ 112              	.LVL7:
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 3
+
+
+ 113              		.loc 1 33 0
+ 114 0018 10BC     		pop	{r4}
+ 115              		.loc 1 32 0
+ 116 001a FFF7FEBF 		b	pwmEnableChannel
+ 117              	.LVL8:
+ 118              		.cfi_endproc
+ 119              	.LFE119:
+ 120              		.size	servoSetValue, .-servoSetValue
+ 121 001e 00BF     		.section	.text.servoSetMax,"ax",%progbits
+ 122              		.align	2
+ 123              		.p2align 4,,15
+ 124              		.global	servoSetMax
+ 125              		.thumb
+ 126              		.thumb_func
+ 127              		.type	servoSetMax, %function
+ 128              	servoSetMax:
+ 129              	.LFB120:
+ 130              		.loc 1 35 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		@ link register save eliminated.
+ 135              	.LVL9:
+ 136              		.loc 1 36 0
+ 137 0000 0182     		strh	r1, [r0, #16]	@ movhi
+ 138 0002 7047     		bx	lr
+ 139              		.cfi_endproc
+ 140              	.LFE120:
+ 141              		.size	servoSetMax, .-servoSetMax
+ 142 0004 AFF30080 		.section	.text.servoSetMin,"ax",%progbits
+ 142      AFF30080 
+ 142      AFF30080 
+ 143              		.align	2
+ 144              		.p2align 4,,15
+ 145              		.global	servoSetMin
+ 146              		.thumb
+ 147              		.thumb_func
+ 148              		.type	servoSetMin, %function
+ 149              	servoSetMin:
+ 150              	.LFB121:
+ 151              		.loc 1 39 0
+ 152              		.cfi_startproc
+ 153              		@ args = 0, pretend = 0, frame = 0
+ 154              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155              		@ link register save eliminated.
+ 156              	.LVL10:
+ 157              		.loc 1 40 0
+ 158 0000 C181     		strh	r1, [r0, #14]	@ movhi
+ 159 0002 7047     		bx	lr
+ 160              		.cfi_endproc
+ 161              	.LFE121:
+ 162              		.size	servoSetMin, .-servoSetMin
+ 163 0004 AFF30080 		.section	.text.servoGetMax,"ax",%progbits
+ 163      AFF30080 
+ 163      AFF30080 
+ 164              		.align	2
+ 165              		.p2align 4,,15
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 4
+
+
+ 166              		.global	servoGetMax
+ 167              		.thumb
+ 168              		.thumb_func
+ 169              		.type	servoGetMax, %function
+ 170              	servoGetMax:
+ 171              	.LFB122:
+ 172              		.loc 1 43 0
+ 173              		.cfi_startproc
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 176              		@ link register save eliminated.
+ 177              	.LVL11:
+ 178              		.loc 1 45 0
+ 179 0000 008A     		ldrh	r0, [r0, #16]
+ 180              	.LVL12:
+ 181 0002 7047     		bx	lr
+ 182              		.cfi_endproc
+ 183              	.LFE122:
+ 184              		.size	servoGetMax, .-servoGetMax
+ 185 0004 AFF30080 		.section	.text.servoGetMin,"ax",%progbits
+ 185      AFF30080 
+ 185      AFF30080 
+ 186              		.align	2
+ 187              		.p2align 4,,15
+ 188              		.global	servoGetMin
+ 189              		.thumb
+ 190              		.thumb_func
+ 191              		.type	servoGetMin, %function
+ 192              	servoGetMin:
+ 193              	.LFB123:
+ 194              		.loc 1 47 0
+ 195              		.cfi_startproc
+ 196              		@ args = 0, pretend = 0, frame = 0
+ 197              		@ frame_needed = 0, uses_anonymous_args = 0
+ 198              		@ link register save eliminated.
+ 199              	.LVL13:
+ 200              		.loc 1 49 0
+ 201 0000 C089     		ldrh	r0, [r0, #14]
+ 202              	.LVL14:
+ 203 0002 7047     		bx	lr
+ 204              		.cfi_endproc
+ 205              	.LFE123:
+ 206              		.size	servoGetMin, .-servoGetMin
+ 207 0004 AFF30080 		.section	.data.pwmcfg,"aw",%progbits
+ 207      AFF30080 
+ 207      AFF30080 
+ 208              		.align	2
+ 209              		.set	.LANCHOR0,. + 0
+ 210              		.type	pwmcfg, %object
+ 211              		.size	pwmcfg, 52
+ 212              	pwmcfg:
+ 213 0000 40420F00 		.word	1000000
+ 214 0004 D007     		.short	2000
+ 215 0006 0000     		.space	2
+ 216 0008 00000000 		.word	0
+ 217 000c 00000000 		.word	0
+ 218 0010 00000000 		.word	0
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 5
+
+
+ 219 0014 00000000 		.space	24
+ 219      00000000 
+ 219      00000000 
+ 219      00000000 
+ 219      00000000 
+ 220 002c 00000000 		.space	8
+ 220      00000000 
+ 221              		.text
+ 222              	.Letext0:
+ 223              		.file 2 "c:\\chibistudio\\tools\\gnu tools arm embedded\\4.7 2014q2\\bin\\../lib/gcc/arm-none-eabi
+ 224              		.file 3 "../../os/hal/platforms/STM32/GPIOv2/pal_lld.h"
+ 225              		.file 4 "../../os/hal/include/pwm.h"
+ 226              		.file 5 "../../os/hal/platforms/STM32/TIMv1/pwm_lld.h"
+ 227              		.file 6 "../../os/hal/platforms/STM32/TIMv1/stm32_tim.h"
+ 228              		.file 7 "servo.h"
+ 229              		.file 8 "../../os/ports/common/ARMCMx/CMSIS/include/core_cm4.h"
+ 230              		.section	.debug_info,"",%progbits
+ 231              	.Ldebug_info0:
+ 232 0000 09070000 		.4byte	0x709
+ 233 0004 0200     		.2byte	0x2
+ 234 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 235 000a 04       		.byte	0x4
+ 236 000b 01       		.uleb128 0x1
+ 237 000c 9F020000 		.4byte	.LASF77
+ 238 0010 01       		.byte	0x1
+ 239 0011 4F000000 		.4byte	.LASF78
+ 240 0015 FF000000 		.4byte	.LASF79
+ 241 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 242 001d 00000000 		.4byte	0
+ 243 0021 00000000 		.4byte	0
+ 244 0025 00000000 		.4byte	.Ldebug_line0
+ 245 0029 02       		.uleb128 0x2
+ 246 002a 04       		.byte	0x4
+ 247 002b 05       		.byte	0x5
+ 248 002c 696E7400 		.ascii	"int\000"
+ 249 0030 03       		.uleb128 0x3
+ 250 0031 04       		.byte	0x4
+ 251 0032 07       		.byte	0x7
+ 252 0033 E4010000 		.4byte	.LASF0
+ 253 0037 03       		.uleb128 0x3
+ 254 0038 01       		.byte	0x1
+ 255 0039 06       		.byte	0x6
+ 256 003a B8010000 		.4byte	.LASF1
+ 257 003e 04       		.uleb128 0x4
+ 258 003f AF000000 		.4byte	.LASF4
+ 259 0043 02       		.byte	0x2
+ 260 0044 2A       		.byte	0x2a
+ 261 0045 49000000 		.4byte	0x49
+ 262 0049 03       		.uleb128 0x3
+ 263 004a 01       		.byte	0x1
+ 264 004b 08       		.byte	0x8
+ 265 004c 9E010000 		.4byte	.LASF2
+ 266 0050 03       		.uleb128 0x3
+ 267 0051 02       		.byte	0x2
+ 268 0052 05       		.byte	0x5
+ 269 0053 45000000 		.4byte	.LASF3
+ 270 0057 04       		.uleb128 0x4
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 6
+
+
+ 271 0058 F1010000 		.4byte	.LASF5
+ 272 005c 02       		.byte	0x2
+ 273 005d 36       		.byte	0x36
+ 274 005e 62000000 		.4byte	0x62
+ 275 0062 03       		.uleb128 0x3
+ 276 0063 02       		.byte	0x2
+ 277 0064 07       		.byte	0x7
+ 278 0065 1D020000 		.4byte	.LASF6
+ 279 0069 04       		.uleb128 0x4
+ 280 006a 4B020000 		.4byte	.LASF7
+ 281 006e 02       		.byte	0x2
+ 282 006f 4F       		.byte	0x4f
+ 283 0070 74000000 		.4byte	0x74
+ 284 0074 03       		.uleb128 0x3
+ 285 0075 04       		.byte	0x4
+ 286 0076 05       		.byte	0x5
+ 287 0077 29010000 		.4byte	.LASF8
+ 288 007b 04       		.uleb128 0x4
+ 289 007c DB010000 		.4byte	.LASF9
+ 290 0080 02       		.byte	0x2
+ 291 0081 50       		.byte	0x50
+ 292 0082 86000000 		.4byte	0x86
+ 293 0086 03       		.uleb128 0x3
+ 294 0087 04       		.byte	0x4
+ 295 0088 07       		.byte	0x7
+ 296 0089 7C020000 		.4byte	.LASF10
+ 297 008d 03       		.uleb128 0x3
+ 298 008e 08       		.byte	0x8
+ 299 008f 05       		.byte	0x5
+ 300 0090 E5000000 		.4byte	.LASF11
+ 301 0094 03       		.uleb128 0x3
+ 302 0095 08       		.byte	0x8
+ 303 0096 07       		.byte	0x7
+ 304 0097 C4010000 		.4byte	.LASF12
+ 305 009b 03       		.uleb128 0x3
+ 306 009c 01       		.byte	0x1
+ 307 009d 02       		.byte	0x2
+ 308 009e 53020000 		.4byte	.LASF13
+ 309 00a2 05       		.uleb128 0x5
+ 310 00a3 7B000000 		.4byte	0x7b
+ 311 00a7 03       		.uleb128 0x3
+ 312 00a8 04       		.byte	0x4
+ 313 00a9 07       		.byte	0x7
+ 314 00aa 65000000 		.4byte	.LASF14
+ 315 00ae 03       		.uleb128 0x3
+ 316 00af 01       		.byte	0x1
+ 317 00b0 08       		.byte	0x8
+ 318 00b1 30020000 		.4byte	.LASF15
+ 319 00b5 06       		.uleb128 0x6
+ 320 00b6 7B000000 		.4byte	0x7b
+ 321 00ba C5000000 		.4byte	0xc5
+ 322 00be 07       		.uleb128 0x7
+ 323 00bf A7000000 		.4byte	0xa7
+ 324 00c3 03       		.byte	0x3
+ 325 00c4 00       		.byte	0
+ 326 00c5 05       		.uleb128 0x5
+ 327 00c6 69000000 		.4byte	0x69
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 7
+
+
+ 328 00ca 08       		.uleb128 0x8
+ 329 00cb 04       		.byte	0x4
+ 330 00cc 03       		.byte	0x3
+ 331 00cd 96       		.byte	0x96
+ 332 00ce EF000000 		.4byte	0xef
+ 333 00d2 09       		.uleb128 0x9
+ 334 00d3 73657400 		.ascii	"set\000"
+ 335 00d7 03       		.byte	0x3
+ 336 00d8 97       		.byte	0x97
+ 337 00d9 57000000 		.4byte	0x57
+ 338 00dd 02       		.byte	0x2
+ 339 00de 23       		.byte	0x23
+ 340 00df 00       		.uleb128 0
+ 341 00e0 0A       		.uleb128 0xa
+ 342 00e1 55010000 		.4byte	.LASF16
+ 343 00e5 03       		.byte	0x3
+ 344 00e6 98       		.byte	0x98
+ 345 00e7 57000000 		.4byte	0x57
+ 346 00eb 02       		.byte	0x2
+ 347 00ec 23       		.byte	0x23
+ 348 00ed 02       		.uleb128 0x2
+ 349 00ee 00       		.byte	0
+ 350 00ef 0B       		.uleb128 0xb
+ 351 00f0 04       		.byte	0x4
+ 352 00f1 03       		.byte	0x3
+ 353 00f2 94       		.byte	0x94
+ 354 00f3 0A010000 		.4byte	0x10a
+ 355 00f7 0C       		.uleb128 0xc
+ 356 00f8 5700     		.ascii	"W\000"
+ 357 00fa 03       		.byte	0x3
+ 358 00fb 95       		.byte	0x95
+ 359 00fc 7B000000 		.4byte	0x7b
+ 360 0100 0C       		.uleb128 0xc
+ 361 0101 4800     		.ascii	"H\000"
+ 362 0103 03       		.byte	0x3
+ 363 0104 99       		.byte	0x99
+ 364 0105 CA000000 		.4byte	0xca
+ 365 0109 00       		.byte	0
+ 366 010a 08       		.uleb128 0x8
+ 367 010b 28       		.byte	0x28
+ 368 010c 03       		.byte	0x3
+ 369 010d 8C       		.byte	0x8c
+ 370 010e 9F010000 		.4byte	0x19f
+ 371 0112 0A       		.uleb128 0xa
+ 372 0113 4F010000 		.4byte	.LASF17
+ 373 0117 03       		.byte	0x3
+ 374 0118 8E       		.byte	0x8e
+ 375 0119 A2000000 		.4byte	0xa2
+ 376 011d 02       		.byte	0x2
+ 377 011e 23       		.byte	0x23
+ 378 011f 00       		.uleb128 0
+ 379 0120 0A       		.uleb128 0xa
+ 380 0121 D5000000 		.4byte	.LASF18
+ 381 0125 03       		.byte	0x3
+ 382 0126 8F       		.byte	0x8f
+ 383 0127 A2000000 		.4byte	0xa2
+ 384 012b 02       		.byte	0x2
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 8
+
+
+ 385 012c 23       		.byte	0x23
+ 386 012d 04       		.uleb128 0x4
+ 387 012e 0A       		.uleb128 0xa
+ 388 012f 6C020000 		.4byte	.LASF19
+ 389 0133 03       		.byte	0x3
+ 390 0134 90       		.byte	0x90
+ 391 0135 A2000000 		.4byte	0xa2
+ 392 0139 02       		.byte	0x2
+ 393 013a 23       		.byte	0x23
+ 394 013b 08       		.uleb128 0x8
+ 395 013c 0A       		.uleb128 0xa
+ 396 013d 04020000 		.4byte	.LASF20
+ 397 0141 03       		.byte	0x3
+ 398 0142 91       		.byte	0x91
+ 399 0143 A2000000 		.4byte	0xa2
+ 400 0147 02       		.byte	0x2
+ 401 0148 23       		.byte	0x23
+ 402 0149 0C       		.uleb128 0xc
+ 403 014a 09       		.uleb128 0x9
+ 404 014b 49445200 		.ascii	"IDR\000"
+ 405 014f 03       		.byte	0x3
+ 406 0150 92       		.byte	0x92
+ 407 0151 A2000000 		.4byte	0xa2
+ 408 0155 02       		.byte	0x2
+ 409 0156 23       		.byte	0x23
+ 410 0157 10       		.uleb128 0x10
+ 411 0158 09       		.uleb128 0x9
+ 412 0159 4F445200 		.ascii	"ODR\000"
+ 413 015d 03       		.byte	0x3
+ 414 015e 93       		.byte	0x93
+ 415 015f A2000000 		.4byte	0xa2
+ 416 0163 02       		.byte	0x2
+ 417 0164 23       		.byte	0x23
+ 418 0165 14       		.uleb128 0x14
+ 419 0166 0A       		.uleb128 0xa
+ 420 0167 9A000000 		.4byte	.LASF21
+ 421 016b 03       		.byte	0x3
+ 422 016c 9A       		.byte	0x9a
+ 423 016d 9F010000 		.4byte	0x19f
+ 424 0171 02       		.byte	0x2
+ 425 0172 23       		.byte	0x23
+ 426 0173 18       		.uleb128 0x18
+ 427 0174 0A       		.uleb128 0xa
+ 428 0175 49030000 		.4byte	.LASF22
+ 429 0179 03       		.byte	0x3
+ 430 017a 9B       		.byte	0x9b
+ 431 017b A2000000 		.4byte	0xa2
+ 432 017f 02       		.byte	0x2
+ 433 0180 23       		.byte	0x23
+ 434 0181 1C       		.uleb128 0x1c
+ 435 0182 0A       		.uleb128 0xa
+ 436 0183 18020000 		.4byte	.LASF23
+ 437 0187 03       		.byte	0x3
+ 438 0188 9C       		.byte	0x9c
+ 439 0189 A2000000 		.4byte	0xa2
+ 440 018d 02       		.byte	0x2
+ 441 018e 23       		.byte	0x23
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 9
+
+
+ 442 018f 20       		.uleb128 0x20
+ 443 0190 0A       		.uleb128 0xa
+ 444 0191 60000000 		.4byte	.LASF24
+ 445 0195 03       		.byte	0x3
+ 446 0196 9D       		.byte	0x9d
+ 447 0197 A2000000 		.4byte	0xa2
+ 448 019b 02       		.byte	0x2
+ 449 019c 23       		.byte	0x23
+ 450 019d 24       		.uleb128 0x24
+ 451 019e 00       		.byte	0
+ 452 019f 05       		.uleb128 0x5
+ 453 01a0 EF000000 		.4byte	0xef
+ 454 01a4 04       		.uleb128 0x4
+ 455 01a5 00000000 		.4byte	.LASF25
+ 456 01a9 03       		.byte	0x3
+ 457 01aa 9E       		.byte	0x9e
+ 458 01ab 0A010000 		.4byte	0x10a
+ 459 01af 04       		.uleb128 0x4
+ 460 01b0 C8000000 		.4byte	.LASF26
+ 461 01b4 03       		.byte	0x3
+ 462 01b5 F0       		.byte	0xf0
+ 463 01b6 7B000000 		.4byte	0x7b
+ 464 01ba 04       		.uleb128 0x4
+ 465 01bb A6000000 		.4byte	.LASF27
+ 466 01bf 03       		.byte	0x3
+ 467 01c0 F5       		.byte	0xf5
+ 468 01c1 7B000000 		.4byte	0x7b
+ 469 01c5 04       		.uleb128 0x4
+ 470 01c6 83010000 		.4byte	.LASF28
+ 471 01ca 03       		.byte	0x3
+ 472 01cb FD       		.byte	0xfd
+ 473 01cc D0010000 		.4byte	0x1d0
+ 474 01d0 0D       		.uleb128 0xd
+ 475 01d1 04       		.byte	0x4
+ 476 01d2 A4010000 		.4byte	0x1a4
+ 477 01d6 0E       		.uleb128 0xe
+ 478 01d7 01       		.byte	0x1
+ 479 01d8 04       		.byte	0x4
+ 480 01d9 55       		.byte	0x55
+ 481 01da F1010000 		.4byte	0x1f1
+ 482 01de 0F       		.uleb128 0xf
+ 483 01df 93010000 		.4byte	.LASF29
+ 484 01e3 00       		.sleb128 0
+ 485 01e4 0F       		.uleb128 0xf
+ 486 01e5 F2020000 		.4byte	.LASF30
+ 487 01e9 01       		.sleb128 1
+ 488 01ea 0F       		.uleb128 0xf
+ 489 01eb E8020000 		.4byte	.LASF31
+ 490 01ef 02       		.sleb128 2
+ 491 01f0 00       		.byte	0
+ 492 01f1 04       		.uleb128 0x4
+ 493 01f2 3E030000 		.4byte	.LASF32
+ 494 01f6 04       		.byte	0x4
+ 495 01f7 59       		.byte	0x59
+ 496 01f8 D6010000 		.4byte	0x1d6
+ 497 01fc 04       		.uleb128 0x4
+ 498 01fd 41020000 		.4byte	.LASF33
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 10
+
+
+ 499 0201 04       		.byte	0x4
+ 500 0202 5E       		.byte	0x5e
+ 501 0203 07020000 		.4byte	0x207
+ 502 0207 10       		.uleb128 0x10
+ 503 0208 41020000 		.4byte	.LASF33
+ 504 020c 14       		.byte	0x14
+ 505 020d 05       		.byte	0x5
+ 506 020e 6F01     		.2byte	0x16f
+ 507 0210 60020000 		.4byte	0x260
+ 508 0214 11       		.uleb128 0x11
+ 509 0215 33000000 		.4byte	.LASF34
+ 510 0219 05       		.byte	0x5
+ 511 021a 7301     		.2byte	0x173
+ 512 021c F1010000 		.4byte	0x1f1
+ 513 0220 02       		.byte	0x2
+ 514 0221 23       		.byte	0x23
+ 515 0222 00       		.uleb128 0
+ 516 0223 11       		.uleb128 0x11
+ 517 0224 9F000000 		.4byte	.LASF35
+ 518 0228 05       		.byte	0x5
+ 519 0229 7701     		.2byte	0x177
+ 520 022b AF040000 		.4byte	0x4af
+ 521 022f 02       		.byte	0x2
+ 522 0230 23       		.byte	0x23
+ 523 0231 04       		.uleb128 0x4
+ 524 0232 11       		.uleb128 0x11
+ 525 0233 48010000 		.4byte	.LASF36
+ 526 0237 05       		.byte	0x5
+ 527 0238 7B01     		.2byte	0x17b
+ 528 023a EF030000 		.4byte	0x3ef
+ 529 023e 02       		.byte	0x2
+ 530 023f 23       		.byte	0x23
+ 531 0240 08       		.uleb128 0x8
+ 532 0241 11       		.uleb128 0x11
+ 533 0242 8E020000 		.4byte	.LASF37
+ 534 0246 05       		.byte	0x5
+ 535 0247 8301     		.2byte	0x183
+ 536 0249 7B000000 		.4byte	0x7b
+ 537 024d 02       		.byte	0x2
+ 538 024e 23       		.byte	0x23
+ 539 024f 0C       		.uleb128 0xc
+ 540 0250 12       		.uleb128 0x12
+ 541 0251 74696D00 		.ascii	"tim\000"
+ 542 0255 05       		.byte	0x5
+ 543 0256 8701     		.2byte	0x187
+ 544 0258 BA040000 		.4byte	0x4ba
+ 545 025c 02       		.byte	0x2
+ 546 025d 23       		.byte	0x23
+ 547 025e 10       		.uleb128 0x10
+ 548 025f 00       		.byte	0
+ 549 0260 04       		.uleb128 0x4
+ 550 0261 0A020000 		.4byte	.LASF38
+ 551 0265 04       		.byte	0x4
+ 552 0266 65       		.byte	0x65
+ 553 0267 6B020000 		.4byte	0x26b
+ 554 026b 0D       		.uleb128 0xd
+ 555 026c 04       		.byte	0x4
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 11
+
+
+ 556 026d 71020000 		.4byte	0x271
+ 557 0271 13       		.uleb128 0x13
+ 558 0272 01       		.byte	0x1
+ 559 0273 7D020000 		.4byte	0x27d
+ 560 0277 14       		.uleb128 0x14
+ 561 0278 7D020000 		.4byte	0x27d
+ 562 027c 00       		.byte	0
+ 563 027d 0D       		.uleb128 0xd
+ 564 027e 04       		.byte	0x4
+ 565 027f FC010000 		.4byte	0x1fc
+ 566 0283 15       		.uleb128 0x15
+ 567 0284 60       		.byte	0x60
+ 568 0285 06       		.byte	0x6
+ 569 0286 9E01     		.2byte	0x19e
+ 570 0288 C6030000 		.4byte	0x3c6
+ 571 028c 12       		.uleb128 0x12
+ 572 028d 43523100 		.ascii	"CR1\000"
+ 573 0291 06       		.byte	0x6
+ 574 0292 9F01     		.2byte	0x19f
+ 575 0294 A2000000 		.4byte	0xa2
+ 576 0298 02       		.byte	0x2
+ 577 0299 23       		.byte	0x23
+ 578 029a 00       		.uleb128 0
+ 579 029b 12       		.uleb128 0x12
+ 580 029c 43523200 		.ascii	"CR2\000"
+ 581 02a0 06       		.byte	0x6
+ 582 02a1 A001     		.2byte	0x1a0
+ 583 02a3 A2000000 		.4byte	0xa2
+ 584 02a7 02       		.byte	0x2
+ 585 02a8 23       		.byte	0x23
+ 586 02a9 04       		.uleb128 0x4
+ 587 02aa 11       		.uleb128 0x11
+ 588 02ab 8E010000 		.4byte	.LASF39
+ 589 02af 06       		.byte	0x6
+ 590 02b0 A101     		.2byte	0x1a1
+ 591 02b2 A2000000 		.4byte	0xa2
+ 592 02b6 02       		.byte	0x2
+ 593 02b7 23       		.byte	0x23
+ 594 02b8 08       		.uleb128 0x8
+ 595 02b9 11       		.uleb128 0x11
+ 596 02ba FF010000 		.4byte	.LASF40
+ 597 02be 06       		.byte	0x6
+ 598 02bf A201     		.2byte	0x1a2
+ 599 02c1 A2000000 		.4byte	0xa2
+ 600 02c5 02       		.byte	0x2
+ 601 02c6 23       		.byte	0x23
+ 602 02c7 0C       		.uleb128 0xc
+ 603 02c8 12       		.uleb128 0x12
+ 604 02c9 535200   		.ascii	"SR\000"
+ 605 02cc 06       		.byte	0x6
+ 606 02cd A301     		.2byte	0x1a3
+ 607 02cf A2000000 		.4byte	0xa2
+ 608 02d3 02       		.byte	0x2
+ 609 02d4 23       		.byte	0x23
+ 610 02d5 10       		.uleb128 0x10
+ 611 02d6 12       		.uleb128 0x12
+ 612 02d7 45475200 		.ascii	"EGR\000"
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 12
+
+
+ 613 02db 06       		.byte	0x6
+ 614 02dc A401     		.2byte	0x1a4
+ 615 02de A2000000 		.4byte	0xa2
+ 616 02e2 02       		.byte	0x2
+ 617 02e3 23       		.byte	0x23
+ 618 02e4 14       		.uleb128 0x14
+ 619 02e5 11       		.uleb128 0x11
+ 620 02e6 5B010000 		.4byte	.LASF41
+ 621 02ea 06       		.byte	0x6
+ 622 02eb A501     		.2byte	0x1a5
+ 623 02ed A2000000 		.4byte	0xa2
+ 624 02f1 02       		.byte	0x2
+ 625 02f2 23       		.byte	0x23
+ 626 02f3 18       		.uleb128 0x18
+ 627 02f4 11       		.uleb128 0x11
+ 628 02f5 39000000 		.4byte	.LASF42
+ 629 02f9 06       		.byte	0x6
+ 630 02fa A601     		.2byte	0x1a6
+ 631 02fc A2000000 		.4byte	0xa2
+ 632 0300 02       		.byte	0x2
+ 633 0301 23       		.byte	0x23
+ 634 0302 1C       		.uleb128 0x1c
+ 635 0303 11       		.uleb128 0x11
+ 636 0304 0D000000 		.4byte	.LASF43
+ 637 0308 06       		.byte	0x6
+ 638 0309 A701     		.2byte	0x1a7
+ 639 030b A2000000 		.4byte	0xa2
+ 640 030f 02       		.byte	0x2
+ 641 0310 23       		.byte	0x23
+ 642 0311 20       		.uleb128 0x20
+ 643 0312 12       		.uleb128 0x12
+ 644 0313 434E5400 		.ascii	"CNT\000"
+ 645 0317 06       		.byte	0x6
+ 646 0318 A801     		.2byte	0x1a8
+ 647 031a A2000000 		.4byte	0xa2
+ 648 031e 02       		.byte	0x2
+ 649 031f 23       		.byte	0x23
+ 650 0320 24       		.uleb128 0x24
+ 651 0321 12       		.uleb128 0x12
+ 652 0322 50534300 		.ascii	"PSC\000"
+ 653 0326 06       		.byte	0x6
+ 654 0327 A901     		.2byte	0x1a9
+ 655 0329 A2000000 		.4byte	0xa2
+ 656 032d 02       		.byte	0x2
+ 657 032e 23       		.byte	0x23
+ 658 032f 28       		.uleb128 0x28
+ 659 0330 12       		.uleb128 0x12
+ 660 0331 41525200 		.ascii	"ARR\000"
+ 661 0335 06       		.byte	0x6
+ 662 0336 AA01     		.2byte	0x1aa
+ 663 0338 A2000000 		.4byte	0xa2
+ 664 033c 02       		.byte	0x2
+ 665 033d 23       		.byte	0x23
+ 666 033e 2C       		.uleb128 0x2c
+ 667 033f 12       		.uleb128 0x12
+ 668 0340 52435200 		.ascii	"RCR\000"
+ 669 0344 06       		.byte	0x6
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 13
+
+
+ 670 0345 AB01     		.2byte	0x1ab
+ 671 0347 A2000000 		.4byte	0xa2
+ 672 034b 02       		.byte	0x2
+ 673 034c 23       		.byte	0x23
+ 674 034d 30       		.uleb128 0x30
+ 675 034e 12       		.uleb128 0x12
+ 676 034f 43435200 		.ascii	"CCR\000"
+ 677 0353 06       		.byte	0x6
+ 678 0354 AC01     		.2byte	0x1ac
+ 679 0356 C6030000 		.4byte	0x3c6
+ 680 035a 02       		.byte	0x2
+ 681 035b 23       		.byte	0x23
+ 682 035c 34       		.uleb128 0x34
+ 683 035d 11       		.uleb128 0x11
+ 684 035e FA010000 		.4byte	.LASF44
+ 685 0362 06       		.byte	0x6
+ 686 0363 AD01     		.2byte	0x1ad
+ 687 0365 A2000000 		.4byte	0xa2
+ 688 0369 02       		.byte	0x2
+ 689 036a 23       		.byte	0x23
+ 690 036b 44       		.uleb128 0x44
+ 691 036c 12       		.uleb128 0x12
+ 692 036d 44435200 		.ascii	"DCR\000"
+ 693 0371 06       		.byte	0x6
+ 694 0372 AE01     		.2byte	0x1ae
+ 695 0374 A2000000 		.4byte	0xa2
+ 696 0378 02       		.byte	0x2
+ 697 0379 23       		.byte	0x23
+ 698 037a 48       		.uleb128 0x48
+ 699 037b 11       		.uleb128 0x11
+ 700 037c 28000000 		.4byte	.LASF45
+ 701 0380 06       		.byte	0x6
+ 702 0381 AF01     		.2byte	0x1af
+ 703 0383 A2000000 		.4byte	0xa2
+ 704 0387 02       		.byte	0x2
+ 705 0388 23       		.byte	0x23
+ 706 0389 4C       		.uleb128 0x4c
+ 707 038a 12       		.uleb128 0x12
+ 708 038b 4F5200   		.ascii	"OR\000"
+ 709 038e 06       		.byte	0x6
+ 710 038f B001     		.2byte	0x1b0
+ 711 0391 A2000000 		.4byte	0xa2
+ 712 0395 02       		.byte	0x2
+ 713 0396 23       		.byte	0x23
+ 714 0397 50       		.uleb128 0x50
+ 715 0398 11       		.uleb128 0x11
+ 716 0399 3F000000 		.4byte	.LASF46
+ 717 039d 06       		.byte	0x6
+ 718 039e B101     		.2byte	0x1b1
+ 719 03a0 A2000000 		.4byte	0xa2
+ 720 03a4 02       		.byte	0x2
+ 721 03a5 23       		.byte	0x23
+ 722 03a6 54       		.uleb128 0x54
+ 723 03a7 11       		.uleb128 0x11
+ 724 03a8 3E010000 		.4byte	.LASF47
+ 725 03ac 06       		.byte	0x6
+ 726 03ad B201     		.2byte	0x1b2
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 14
+
+
+ 727 03af A2000000 		.4byte	0xa2
+ 728 03b3 02       		.byte	0x2
+ 729 03b4 23       		.byte	0x23
+ 730 03b5 58       		.uleb128 0x58
+ 731 03b6 11       		.uleb128 0x11
+ 732 03b7 43010000 		.4byte	.LASF48
+ 733 03bb 06       		.byte	0x6
+ 734 03bc B301     		.2byte	0x1b3
+ 735 03be A2000000 		.4byte	0xa2
+ 736 03c2 02       		.byte	0x2
+ 737 03c3 23       		.byte	0x23
+ 738 03c4 5C       		.uleb128 0x5c
+ 739 03c5 00       		.byte	0
+ 740 03c6 05       		.uleb128 0x5
+ 741 03c7 B5000000 		.4byte	0xb5
+ 742 03cb 16       		.uleb128 0x16
+ 743 03cc 35020000 		.4byte	.LASF49
+ 744 03d0 06       		.byte	0x6
+ 745 03d1 B401     		.2byte	0x1b4
+ 746 03d3 83020000 		.4byte	0x283
+ 747 03d7 16       		.uleb128 0x16
+ 748 03d8 21030000 		.4byte	.LASF50
+ 749 03dc 05       		.byte	0x5
+ 750 03dd 2001     		.2byte	0x120
+ 751 03df 7B000000 		.4byte	0x7b
+ 752 03e3 16       		.uleb128 0x16
+ 753 03e4 7F000000 		.4byte	.LASF51
+ 754 03e8 05       		.byte	0x5
+ 755 03e9 2501     		.2byte	0x125
+ 756 03eb 3E000000 		.4byte	0x3e
+ 757 03ef 16       		.uleb128 0x16
+ 758 03f0 57000000 		.4byte	.LASF52
+ 759 03f4 05       		.byte	0x5
+ 760 03f5 2A01     		.2byte	0x12a
+ 761 03f7 57000000 		.4byte	0x57
+ 762 03fb 15       		.uleb128 0x15
+ 763 03fc 08       		.byte	0x8
+ 764 03fd 05       		.byte	0x5
+ 765 03fe 2F01     		.2byte	0x12f
+ 766 0400 23040000 		.4byte	0x423
+ 767 0404 11       		.uleb128 0x11
+ 768 0405 8C000000 		.4byte	.LASF53
+ 769 0409 05       		.byte	0x5
+ 770 040a 3301     		.2byte	0x133
+ 771 040c D7030000 		.4byte	0x3d7
+ 772 0410 02       		.byte	0x2
+ 773 0411 23       		.byte	0x23
+ 774 0412 00       		.uleb128 0
+ 775 0413 11       		.uleb128 0x11
+ 776 0414 54030000 		.4byte	.LASF54
+ 777 0418 05       		.byte	0x5
+ 778 0419 3901     		.2byte	0x139
+ 779 041b 60020000 		.4byte	0x260
+ 780 041f 02       		.byte	0x2
+ 781 0420 23       		.byte	0x23
+ 782 0421 04       		.uleb128 0x4
+ 783 0422 00       		.byte	0
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 15
+
+
+ 784 0423 16       		.uleb128 0x16
+ 785 0424 0A030000 		.4byte	.LASF55
+ 786 0428 05       		.byte	0x5
+ 787 0429 3B01     		.2byte	0x13b
+ 788 042b FB030000 		.4byte	0x3fb
+ 789 042f 15       		.uleb128 0x15
+ 790 0430 34       		.byte	0x34
+ 791 0431 05       		.byte	0x5
+ 792 0432 4001     		.2byte	0x140
+ 793 0434 93040000 		.4byte	0x493
+ 794 0438 11       		.uleb128 0x11
+ 795 0439 00030000 		.4byte	.LASF56
+ 796 043d 05       		.byte	0x5
+ 797 043e 4601     		.2byte	0x146
+ 798 0440 7B000000 		.4byte	0x7b
+ 799 0444 02       		.byte	0x2
+ 800 0445 23       		.byte	0x23
+ 801 0446 00       		.uleb128 0
+ 802 0447 11       		.uleb128 0x11
+ 803 0448 48010000 		.4byte	.LASF36
+ 804 044c 05       		.byte	0x5
+ 805 044d 4C01     		.2byte	0x14c
+ 806 044f EF030000 		.4byte	0x3ef
+ 807 0453 02       		.byte	0x2
+ 808 0454 23       		.byte	0x23
+ 809 0455 04       		.uleb128 0x4
+ 810 0456 11       		.uleb128 0x11
+ 811 0457 54030000 		.4byte	.LASF54
+ 812 045b 05       		.byte	0x5
+ 813 045c 5201     		.2byte	0x152
+ 814 045e 60020000 		.4byte	0x260
+ 815 0462 02       		.byte	0x2
+ 816 0463 23       		.byte	0x23
+ 817 0464 08       		.uleb128 0x8
+ 818 0465 11       		.uleb128 0x11
+ 819 0466 91000000 		.4byte	.LASF57
+ 820 046a 05       		.byte	0x5
+ 821 046b 5601     		.2byte	0x156
+ 822 046d 93040000 		.4byte	0x493
+ 823 0471 02       		.byte	0x2
+ 824 0472 23       		.byte	0x23
+ 825 0473 0C       		.uleb128 0xc
+ 826 0474 12       		.uleb128 0x12
+ 827 0475 63723200 		.ascii	"cr2\000"
+ 828 0479 05       		.byte	0x5
+ 829 047a 5C01     		.2byte	0x15c
+ 830 047c 7B000000 		.4byte	0x7b
+ 831 0480 02       		.byte	0x2
+ 832 0481 23       		.byte	0x23
+ 833 0482 2C       		.uleb128 0x2c
+ 834 0483 11       		.uleb128 0x11
+ 835 0484 FB020000 		.4byte	.LASF58
+ 836 0488 05       		.byte	0x5
+ 837 0489 6901     		.2byte	0x169
+ 838 048b 7B000000 		.4byte	0x7b
+ 839 048f 02       		.byte	0x2
+ 840 0490 23       		.byte	0x23
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 16
+
+
+ 841 0491 30       		.uleb128 0x30
+ 842 0492 00       		.byte	0
+ 843 0493 06       		.uleb128 0x6
+ 844 0494 23040000 		.4byte	0x423
+ 845 0498 A3040000 		.4byte	0x4a3
+ 846 049c 07       		.uleb128 0x7
+ 847 049d A7000000 		.4byte	0xa7
+ 848 04a1 03       		.byte	0x3
+ 849 04a2 00       		.byte	0
+ 850 04a3 16       		.uleb128 0x16
+ 851 04a4 6D010000 		.4byte	.LASF59
+ 852 04a8 05       		.byte	0x5
+ 853 04a9 6A01     		.2byte	0x16a
+ 854 04ab 2F040000 		.4byte	0x42f
+ 855 04af 0D       		.uleb128 0xd
+ 856 04b0 04       		.byte	0x4
+ 857 04b1 B5040000 		.4byte	0x4b5
+ 858 04b5 17       		.uleb128 0x17
+ 859 04b6 A3040000 		.4byte	0x4a3
+ 860 04ba 0D       		.uleb128 0xd
+ 861 04bb 04       		.byte	0x4
+ 862 04bc CB030000 		.4byte	0x3cb
+ 863 04c0 18       		.uleb128 0x18
+ 864 04c1 74020000 		.4byte	.LASF60
+ 865 04c5 14       		.byte	0x14
+ 866 04c6 07       		.byte	0x7
+ 867 04c7 0B       		.byte	0xb
+ 868 04c8 21050000 		.4byte	0x521
+ 869 04cc 0A       		.uleb128 0xa
+ 870 04cd 67020000 		.4byte	.LASF61
+ 871 04d1 07       		.byte	0x7
+ 872 04d2 0C       		.byte	0xc
+ 873 04d3 C5010000 		.4byte	0x1c5
+ 874 04d7 02       		.byte	0x2
+ 875 04d8 23       		.byte	0x23
+ 876 04d9 00       		.uleb128 0
+ 877 04da 09       		.uleb128 0x9
+ 878 04db 70696E00 		.ascii	"pin\000"
+ 879 04df 07       		.byte	0x7
+ 880 04e0 0D       		.byte	0xd
+ 881 04e1 AF010000 		.4byte	0x1af
+ 882 04e5 02       		.byte	0x2
+ 883 04e6 23       		.byte	0x23
+ 884 04e7 04       		.uleb128 0x4
+ 885 04e8 0A       		.uleb128 0xa
+ 886 04e9 94020000 		.4byte	.LASF62
+ 887 04ed 07       		.byte	0x7
+ 888 04ee 0E       		.byte	0xe
+ 889 04ef 7D020000 		.4byte	0x27d
+ 890 04f3 02       		.byte	0x2
+ 891 04f4 23       		.byte	0x23
+ 892 04f5 08       		.uleb128 0x8
+ 893 04f6 0A       		.uleb128 0xa
+ 894 04f7 32010000 		.4byte	.LASF63
+ 895 04fb 07       		.byte	0x7
+ 896 04fc 0F       		.byte	0xf
+ 897 04fd E3030000 		.4byte	0x3e3
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 17
+
+
+ 898 0501 02       		.byte	0x2
+ 899 0502 23       		.byte	0x23
+ 900 0503 0C       		.uleb128 0xc
+ 901 0504 09       		.uleb128 0x9
+ 902 0505 6D696E00 		.ascii	"min\000"
+ 903 0509 07       		.byte	0x7
+ 904 050a 10       		.byte	0x10
+ 905 050b 57000000 		.4byte	0x57
+ 906 050f 02       		.byte	0x2
+ 907 0510 23       		.byte	0x23
+ 908 0511 0E       		.uleb128 0xe
+ 909 0512 09       		.uleb128 0x9
+ 910 0513 6D617800 		.ascii	"max\000"
+ 911 0517 07       		.byte	0x7
+ 912 0518 11       		.byte	0x11
+ 913 0519 57000000 		.4byte	0x57
+ 914 051d 02       		.byte	0x2
+ 915 051e 23       		.byte	0x23
+ 916 051f 10       		.uleb128 0x10
+ 917 0520 00       		.byte	0
+ 918 0521 04       		.uleb128 0x4
+ 919 0522 2D000000 		.4byte	.LASF64
+ 920 0526 07       		.byte	0x7
+ 921 0527 12       		.byte	0x12
+ 922 0528 C0040000 		.4byte	0x4c0
+ 923 052c 19       		.uleb128 0x19
+ 924 052d 01       		.byte	0x1
+ 925 052e 6E000000 		.4byte	.LASF65
+ 926 0532 01       		.byte	0x1
+ 927 0533 11       		.byte	0x11
+ 928 0534 01       		.byte	0x1
+ 929 0535 00000000 		.4byte	.LFB118
+ 930 0539 44000000 		.4byte	.LFE118
+ 931 053d 00000000 		.4byte	.LLST0
+ 932 0541 01       		.byte	0x1
+ 933 0542 90050000 		.4byte	0x590
+ 934 0546 1A       		.uleb128 0x1a
+ 935 0547 4E030000 		.4byte	.LASF67
+ 936 054b 01       		.byte	0x1
+ 937 054c 11       		.byte	0x11
+ 938 054d 90050000 		.4byte	0x590
+ 939 0551 20000000 		.4byte	.LLST1
+ 940 0555 1B       		.uleb128 0x1b
+ 941 0556 1B030000 		.4byte	.LASF73
+ 942 055a 01       		.byte	0x1
+ 943 055b 12       		.byte	0x12
+ 944 055c 23040000 		.4byte	0x423
+ 945 0560 08       		.byte	0x8
+ 946 0561 31       		.byte	0x31
+ 947 0562 9F       		.byte	0x9f
+ 948 0563 93       		.byte	0x93
+ 949 0564 04       		.uleb128 0x4
+ 950 0565 30       		.byte	0x30
+ 951 0566 9F       		.byte	0x9f
+ 952 0567 93       		.byte	0x93
+ 953 0568 04       		.uleb128 0x4
+ 954 0569 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 18
+
+
+ 955 056a 38000000 		.4byte	.LVL2
+ 956 056e BA060000 		.4byte	0x6ba
+ 957 0572 7E050000 		.4byte	0x57e
+ 958 0576 1D       		.uleb128 0x1d
+ 959 0577 01       		.byte	0x1
+ 960 0578 52       		.byte	0x52
+ 961 0579 03       		.byte	0x3
+ 962 057a 0A       		.byte	0xa
+ 963 057b 0201     		.2byte	0x102
+ 964 057d 00       		.byte	0
+ 965 057e 1E       		.uleb128 0x1e
+ 966 057f 44000000 		.4byte	.LVL3
+ 967 0583 01       		.byte	0x1
+ 968 0584 D9060000 		.4byte	0x6d9
+ 969 0588 1D       		.uleb128 0x1d
+ 970 0589 01       		.byte	0x1
+ 971 058a 51       		.byte	0x51
+ 972 058b 02       		.byte	0x2
+ 973 058c 74       		.byte	0x74
+ 974 058d 00       		.sleb128 0
+ 975 058e 00       		.byte	0
+ 976 058f 00       		.byte	0
+ 977 0590 0D       		.uleb128 0xd
+ 978 0591 04       		.byte	0x4
+ 979 0592 21050000 		.4byte	0x521
+ 980 0596 19       		.uleb128 0x19
+ 981 0597 01       		.byte	0x1
+ 982 0598 59020000 		.4byte	.LASF66
+ 983 059c 01       		.byte	0x1
+ 984 059d 1A       		.byte	0x1a
+ 985 059e 01       		.byte	0x1
+ 986 059f 00000000 		.4byte	.LFB119
+ 987 05a3 1E000000 		.4byte	.LFE119
+ 988 05a7 3E000000 		.4byte	.LLST2
+ 989 05ab 01       		.byte	0x1
+ 990 05ac D9050000 		.4byte	0x5d9
+ 991 05b0 1A       		.uleb128 0x1a
+ 992 05b1 4E030000 		.4byte	.LASF67
+ 993 05b5 01       		.byte	0x1
+ 994 05b6 1A       		.byte	0x1a
+ 995 05b7 90050000 		.4byte	0x590
+ 996 05bb 5E000000 		.4byte	.LLST3
+ 997 05bf 1A       		.uleb128 0x1a
+ 998 05c0 38030000 		.4byte	.LASF68
+ 999 05c4 01       		.byte	0x1
+ 1000 05c5 1A       		.byte	0x1a
+ 1001 05c6 57000000 		.4byte	0x57
+ 1002 05ca 8A000000 		.4byte	.LLST4
+ 1003 05ce 1F       		.uleb128 0x1f
+ 1004 05cf 1E000000 		.4byte	.LVL8
+ 1005 05d3 01       		.byte	0x1
+ 1006 05d4 F2060000 		.4byte	0x6f2
+ 1007 05d8 00       		.byte	0
+ 1008 05d9 20       		.uleb128 0x20
+ 1009 05da 01       		.byte	0x1
+ 1010 05db F3000000 		.4byte	.LASF69
+ 1011 05df 01       		.byte	0x1
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 19
+
+
+ 1012 05e0 23       		.byte	0x23
+ 1013 05e1 01       		.byte	0x1
+ 1014 05e2 00000000 		.4byte	.LFB120
+ 1015 05e6 04000000 		.4byte	.LFE120
+ 1016 05ea 02       		.byte	0x2
+ 1017 05eb 7D       		.byte	0x7d
+ 1018 05ec 00       		.sleb128 0
+ 1019 05ed 01       		.byte	0x1
+ 1020 05ee 0D060000 		.4byte	0x60d
+ 1021 05f2 21       		.uleb128 0x21
+ 1022 05f3 4E030000 		.4byte	.LASF67
+ 1023 05f7 01       		.byte	0x1
+ 1024 05f8 23       		.byte	0x23
+ 1025 05f9 90050000 		.4byte	0x590
+ 1026 05fd 01       		.byte	0x1
+ 1027 05fe 50       		.byte	0x50
+ 1028 05ff 21       		.uleb128 0x21
+ 1029 0600 38030000 		.4byte	.LASF68
+ 1030 0604 01       		.byte	0x1
+ 1031 0605 23       		.byte	0x23
+ 1032 0606 57000000 		.4byte	0x57
+ 1033 060a 01       		.byte	0x1
+ 1034 060b 51       		.byte	0x51
+ 1035 060c 00       		.byte	0
+ 1036 060d 20       		.uleb128 0x20
+ 1037 060e 01       		.byte	0x1
+ 1038 060f 77010000 		.4byte	.LASF70
+ 1039 0613 01       		.byte	0x1
+ 1040 0614 27       		.byte	0x27
+ 1041 0615 01       		.byte	0x1
+ 1042 0616 00000000 		.4byte	.LFB121
+ 1043 061a 04000000 		.4byte	.LFE121
+ 1044 061e 02       		.byte	0x2
+ 1045 061f 7D       		.byte	0x7d
+ 1046 0620 00       		.sleb128 0
+ 1047 0621 01       		.byte	0x1
+ 1048 0622 41060000 		.4byte	0x641
+ 1049 0626 21       		.uleb128 0x21
+ 1050 0627 4E030000 		.4byte	.LASF67
+ 1051 062b 01       		.byte	0x1
+ 1052 062c 27       		.byte	0x27
+ 1053 062d 90050000 		.4byte	0x590
+ 1054 0631 01       		.byte	0x1
+ 1055 0632 50       		.byte	0x50
+ 1056 0633 21       		.uleb128 0x21
+ 1057 0634 38030000 		.4byte	.LASF68
+ 1058 0638 01       		.byte	0x1
+ 1059 0639 27       		.byte	0x27
+ 1060 063a 57000000 		.4byte	0x57
+ 1061 063e 01       		.byte	0x1
+ 1062 063f 51       		.byte	0x51
+ 1063 0640 00       		.byte	0
+ 1064 0641 22       		.uleb128 0x22
+ 1065 0642 01       		.byte	0x1
+ 1066 0643 61010000 		.4byte	.LASF71
+ 1067 0647 01       		.byte	0x1
+ 1068 0648 2B       		.byte	0x2b
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 20
+
+
+ 1069 0649 01       		.byte	0x1
+ 1070 064a 57000000 		.4byte	0x57
+ 1071 064e 00000000 		.4byte	.LFB122
+ 1072 0652 04000000 		.4byte	.LFE122
+ 1073 0656 02       		.byte	0x2
+ 1074 0657 7D       		.byte	0x7d
+ 1075 0658 00       		.sleb128 0
+ 1076 0659 01       		.byte	0x1
+ 1077 065a 6E060000 		.4byte	0x66e
+ 1078 065e 1A       		.uleb128 0x1a
+ 1079 065f 4E030000 		.4byte	.LASF67
+ 1080 0663 01       		.byte	0x1
+ 1081 0664 2B       		.byte	0x2b
+ 1082 0665 90050000 		.4byte	0x590
+ 1083 0669 BD000000 		.4byte	.LLST5
+ 1084 066d 00       		.byte	0
+ 1085 066e 22       		.uleb128 0x22
+ 1086 066f 01       		.byte	0x1
+ 1087 0670 AC010000 		.4byte	.LASF72
+ 1088 0674 01       		.byte	0x1
+ 1089 0675 2F       		.byte	0x2f
+ 1090 0676 01       		.byte	0x1
+ 1091 0677 57000000 		.4byte	0x57
+ 1092 067b 00000000 		.4byte	.LFB123
+ 1093 067f 04000000 		.4byte	.LFE123
+ 1094 0683 02       		.byte	0x2
+ 1095 0684 7D       		.byte	0x7d
+ 1096 0685 00       		.sleb128 0
+ 1097 0686 01       		.byte	0x1
+ 1098 0687 9B060000 		.4byte	0x69b
+ 1099 068b 1A       		.uleb128 0x1a
+ 1100 068c 4E030000 		.4byte	.LASF67
+ 1101 0690 01       		.byte	0x1
+ 1102 0691 2F       		.byte	0x2f
+ 1103 0692 90050000 		.4byte	0x590
+ 1104 0696 DE000000 		.4byte	.LLST6
+ 1105 069a 00       		.byte	0
+ 1106 069b 1B       		.uleb128 0x1b
+ 1107 069c 78000000 		.4byte	.LASF74
+ 1108 06a0 01       		.byte	0x1
+ 1109 06a1 09       		.byte	0x9
+ 1110 06a2 A3040000 		.4byte	0x4a3
+ 1111 06a6 05       		.byte	0x5
+ 1112 06a7 03       		.byte	0x3
+ 1113 06a8 00000000 		.4byte	pwmcfg
+ 1114 06ac 23       		.uleb128 0x23
+ 1115 06ad 2B030000 		.4byte	.LASF80
+ 1116 06b1 08       		.byte	0x8
+ 1117 06b2 9806     		.2byte	0x698
+ 1118 06b4 C5000000 		.4byte	0xc5
+ 1119 06b8 01       		.byte	0x1
+ 1120 06b9 01       		.byte	0x1
+ 1121 06ba 24       		.uleb128 0x24
+ 1122 06bb 01       		.byte	0x1
+ 1123 06bc 12000000 		.4byte	.LASF75
+ 1124 06c0 03       		.byte	0x3
+ 1125 06c1 C201     		.2byte	0x1c2
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 21
+
+
+ 1126 06c3 01       		.byte	0x1
+ 1127 06c4 01       		.byte	0x1
+ 1128 06c5 D9060000 		.4byte	0x6d9
+ 1129 06c9 14       		.uleb128 0x14
+ 1130 06ca C5010000 		.4byte	0x1c5
+ 1131 06ce 14       		.uleb128 0x14
+ 1132 06cf AF010000 		.4byte	0x1af
+ 1133 06d3 14       		.uleb128 0x14
+ 1134 06d4 BA010000 		.4byte	0x1ba
+ 1135 06d8 00       		.byte	0
+ 1136 06d9 25       		.uleb128 0x25
+ 1137 06da 01       		.byte	0x1
+ 1138 06db DC000000 		.4byte	.LASF76
+ 1139 06df 04       		.byte	0x4
+ 1140 06e0 F4       		.byte	0xf4
+ 1141 06e1 01       		.byte	0x1
+ 1142 06e2 01       		.byte	0x1
+ 1143 06e3 F2060000 		.4byte	0x6f2
+ 1144 06e7 14       		.uleb128 0x14
+ 1145 06e8 7D020000 		.4byte	0x27d
+ 1146 06ec 14       		.uleb128 0x14
+ 1147 06ed AF040000 		.4byte	0x4af
+ 1148 06f1 00       		.byte	0
+ 1149 06f2 26       		.uleb128 0x26
+ 1150 06f3 01       		.byte	0x1
+ 1151 06f4 B7000000 		.4byte	.LASF81
+ 1152 06f8 04       		.byte	0x4
+ 1153 06f9 F7       		.byte	0xf7
+ 1154 06fa 01       		.byte	0x1
+ 1155 06fb 01       		.byte	0x1
+ 1156 06fc 14       		.uleb128 0x14
+ 1157 06fd 7D020000 		.4byte	0x27d
+ 1158 0701 14       		.uleb128 0x14
+ 1159 0702 E3030000 		.4byte	0x3e3
+ 1160 0706 14       		.uleb128 0x14
+ 1161 0707 EF030000 		.4byte	0x3ef
+ 1162 070b 00       		.byte	0
+ 1163 070c 00       		.byte	0
+ 1164              		.section	.debug_abbrev,"",%progbits
+ 1165              	.Ldebug_abbrev0:
+ 1166 0000 01       		.uleb128 0x1
+ 1167 0001 11       		.uleb128 0x11
+ 1168 0002 01       		.byte	0x1
+ 1169 0003 25       		.uleb128 0x25
+ 1170 0004 0E       		.uleb128 0xe
+ 1171 0005 13       		.uleb128 0x13
+ 1172 0006 0B       		.uleb128 0xb
+ 1173 0007 03       		.uleb128 0x3
+ 1174 0008 0E       		.uleb128 0xe
+ 1175 0009 1B       		.uleb128 0x1b
+ 1176 000a 0E       		.uleb128 0xe
+ 1177 000b 55       		.uleb128 0x55
+ 1178 000c 06       		.uleb128 0x6
+ 1179 000d 11       		.uleb128 0x11
+ 1180 000e 01       		.uleb128 0x1
+ 1181 000f 52       		.uleb128 0x52
+ 1182 0010 01       		.uleb128 0x1
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 22
+
+
+ 1183 0011 10       		.uleb128 0x10
+ 1184 0012 06       		.uleb128 0x6
+ 1185 0013 00       		.byte	0
+ 1186 0014 00       		.byte	0
+ 1187 0015 02       		.uleb128 0x2
+ 1188 0016 24       		.uleb128 0x24
+ 1189 0017 00       		.byte	0
+ 1190 0018 0B       		.uleb128 0xb
+ 1191 0019 0B       		.uleb128 0xb
+ 1192 001a 3E       		.uleb128 0x3e
+ 1193 001b 0B       		.uleb128 0xb
+ 1194 001c 03       		.uleb128 0x3
+ 1195 001d 08       		.uleb128 0x8
+ 1196 001e 00       		.byte	0
+ 1197 001f 00       		.byte	0
+ 1198 0020 03       		.uleb128 0x3
+ 1199 0021 24       		.uleb128 0x24
+ 1200 0022 00       		.byte	0
+ 1201 0023 0B       		.uleb128 0xb
+ 1202 0024 0B       		.uleb128 0xb
+ 1203 0025 3E       		.uleb128 0x3e
+ 1204 0026 0B       		.uleb128 0xb
+ 1205 0027 03       		.uleb128 0x3
+ 1206 0028 0E       		.uleb128 0xe
+ 1207 0029 00       		.byte	0
+ 1208 002a 00       		.byte	0
+ 1209 002b 04       		.uleb128 0x4
+ 1210 002c 16       		.uleb128 0x16
+ 1211 002d 00       		.byte	0
+ 1212 002e 03       		.uleb128 0x3
+ 1213 002f 0E       		.uleb128 0xe
+ 1214 0030 3A       		.uleb128 0x3a
+ 1215 0031 0B       		.uleb128 0xb
+ 1216 0032 3B       		.uleb128 0x3b
+ 1217 0033 0B       		.uleb128 0xb
+ 1218 0034 49       		.uleb128 0x49
+ 1219 0035 13       		.uleb128 0x13
+ 1220 0036 00       		.byte	0
+ 1221 0037 00       		.byte	0
+ 1222 0038 05       		.uleb128 0x5
+ 1223 0039 35       		.uleb128 0x35
+ 1224 003a 00       		.byte	0
+ 1225 003b 49       		.uleb128 0x49
+ 1226 003c 13       		.uleb128 0x13
+ 1227 003d 00       		.byte	0
+ 1228 003e 00       		.byte	0
+ 1229 003f 06       		.uleb128 0x6
+ 1230 0040 01       		.uleb128 0x1
+ 1231 0041 01       		.byte	0x1
+ 1232 0042 49       		.uleb128 0x49
+ 1233 0043 13       		.uleb128 0x13
+ 1234 0044 01       		.uleb128 0x1
+ 1235 0045 13       		.uleb128 0x13
+ 1236 0046 00       		.byte	0
+ 1237 0047 00       		.byte	0
+ 1238 0048 07       		.uleb128 0x7
+ 1239 0049 21       		.uleb128 0x21
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 23
+
+
+ 1240 004a 00       		.byte	0
+ 1241 004b 49       		.uleb128 0x49
+ 1242 004c 13       		.uleb128 0x13
+ 1243 004d 2F       		.uleb128 0x2f
+ 1244 004e 0B       		.uleb128 0xb
+ 1245 004f 00       		.byte	0
+ 1246 0050 00       		.byte	0
+ 1247 0051 08       		.uleb128 0x8
+ 1248 0052 13       		.uleb128 0x13
+ 1249 0053 01       		.byte	0x1
+ 1250 0054 0B       		.uleb128 0xb
+ 1251 0055 0B       		.uleb128 0xb
+ 1252 0056 3A       		.uleb128 0x3a
+ 1253 0057 0B       		.uleb128 0xb
+ 1254 0058 3B       		.uleb128 0x3b
+ 1255 0059 0B       		.uleb128 0xb
+ 1256 005a 01       		.uleb128 0x1
+ 1257 005b 13       		.uleb128 0x13
+ 1258 005c 00       		.byte	0
+ 1259 005d 00       		.byte	0
+ 1260 005e 09       		.uleb128 0x9
+ 1261 005f 0D       		.uleb128 0xd
+ 1262 0060 00       		.byte	0
+ 1263 0061 03       		.uleb128 0x3
+ 1264 0062 08       		.uleb128 0x8
+ 1265 0063 3A       		.uleb128 0x3a
+ 1266 0064 0B       		.uleb128 0xb
+ 1267 0065 3B       		.uleb128 0x3b
+ 1268 0066 0B       		.uleb128 0xb
+ 1269 0067 49       		.uleb128 0x49
+ 1270 0068 13       		.uleb128 0x13
+ 1271 0069 38       		.uleb128 0x38
+ 1272 006a 0A       		.uleb128 0xa
+ 1273 006b 00       		.byte	0
+ 1274 006c 00       		.byte	0
+ 1275 006d 0A       		.uleb128 0xa
+ 1276 006e 0D       		.uleb128 0xd
+ 1277 006f 00       		.byte	0
+ 1278 0070 03       		.uleb128 0x3
+ 1279 0071 0E       		.uleb128 0xe
+ 1280 0072 3A       		.uleb128 0x3a
+ 1281 0073 0B       		.uleb128 0xb
+ 1282 0074 3B       		.uleb128 0x3b
+ 1283 0075 0B       		.uleb128 0xb
+ 1284 0076 49       		.uleb128 0x49
+ 1285 0077 13       		.uleb128 0x13
+ 1286 0078 38       		.uleb128 0x38
+ 1287 0079 0A       		.uleb128 0xa
+ 1288 007a 00       		.byte	0
+ 1289 007b 00       		.byte	0
+ 1290 007c 0B       		.uleb128 0xb
+ 1291 007d 17       		.uleb128 0x17
+ 1292 007e 01       		.byte	0x1
+ 1293 007f 0B       		.uleb128 0xb
+ 1294 0080 0B       		.uleb128 0xb
+ 1295 0081 3A       		.uleb128 0x3a
+ 1296 0082 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 24
+
+
+ 1297 0083 3B       		.uleb128 0x3b
+ 1298 0084 0B       		.uleb128 0xb
+ 1299 0085 01       		.uleb128 0x1
+ 1300 0086 13       		.uleb128 0x13
+ 1301 0087 00       		.byte	0
+ 1302 0088 00       		.byte	0
+ 1303 0089 0C       		.uleb128 0xc
+ 1304 008a 0D       		.uleb128 0xd
+ 1305 008b 00       		.byte	0
+ 1306 008c 03       		.uleb128 0x3
+ 1307 008d 08       		.uleb128 0x8
+ 1308 008e 3A       		.uleb128 0x3a
+ 1309 008f 0B       		.uleb128 0xb
+ 1310 0090 3B       		.uleb128 0x3b
+ 1311 0091 0B       		.uleb128 0xb
+ 1312 0092 49       		.uleb128 0x49
+ 1313 0093 13       		.uleb128 0x13
+ 1314 0094 00       		.byte	0
+ 1315 0095 00       		.byte	0
+ 1316 0096 0D       		.uleb128 0xd
+ 1317 0097 0F       		.uleb128 0xf
+ 1318 0098 00       		.byte	0
+ 1319 0099 0B       		.uleb128 0xb
+ 1320 009a 0B       		.uleb128 0xb
+ 1321 009b 49       		.uleb128 0x49
+ 1322 009c 13       		.uleb128 0x13
+ 1323 009d 00       		.byte	0
+ 1324 009e 00       		.byte	0
+ 1325 009f 0E       		.uleb128 0xe
+ 1326 00a0 04       		.uleb128 0x4
+ 1327 00a1 01       		.byte	0x1
+ 1328 00a2 0B       		.uleb128 0xb
+ 1329 00a3 0B       		.uleb128 0xb
+ 1330 00a4 3A       		.uleb128 0x3a
+ 1331 00a5 0B       		.uleb128 0xb
+ 1332 00a6 3B       		.uleb128 0x3b
+ 1333 00a7 0B       		.uleb128 0xb
+ 1334 00a8 01       		.uleb128 0x1
+ 1335 00a9 13       		.uleb128 0x13
+ 1336 00aa 00       		.byte	0
+ 1337 00ab 00       		.byte	0
+ 1338 00ac 0F       		.uleb128 0xf
+ 1339 00ad 28       		.uleb128 0x28
+ 1340 00ae 00       		.byte	0
+ 1341 00af 03       		.uleb128 0x3
+ 1342 00b0 0E       		.uleb128 0xe
+ 1343 00b1 1C       		.uleb128 0x1c
+ 1344 00b2 0D       		.uleb128 0xd
+ 1345 00b3 00       		.byte	0
+ 1346 00b4 00       		.byte	0
+ 1347 00b5 10       		.uleb128 0x10
+ 1348 00b6 13       		.uleb128 0x13
+ 1349 00b7 01       		.byte	0x1
+ 1350 00b8 03       		.uleb128 0x3
+ 1351 00b9 0E       		.uleb128 0xe
+ 1352 00ba 0B       		.uleb128 0xb
+ 1353 00bb 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 25
+
+
+ 1354 00bc 3A       		.uleb128 0x3a
+ 1355 00bd 0B       		.uleb128 0xb
+ 1356 00be 3B       		.uleb128 0x3b
+ 1357 00bf 05       		.uleb128 0x5
+ 1358 00c0 01       		.uleb128 0x1
+ 1359 00c1 13       		.uleb128 0x13
+ 1360 00c2 00       		.byte	0
+ 1361 00c3 00       		.byte	0
+ 1362 00c4 11       		.uleb128 0x11
+ 1363 00c5 0D       		.uleb128 0xd
+ 1364 00c6 00       		.byte	0
+ 1365 00c7 03       		.uleb128 0x3
+ 1366 00c8 0E       		.uleb128 0xe
+ 1367 00c9 3A       		.uleb128 0x3a
+ 1368 00ca 0B       		.uleb128 0xb
+ 1369 00cb 3B       		.uleb128 0x3b
+ 1370 00cc 05       		.uleb128 0x5
+ 1371 00cd 49       		.uleb128 0x49
+ 1372 00ce 13       		.uleb128 0x13
+ 1373 00cf 38       		.uleb128 0x38
+ 1374 00d0 0A       		.uleb128 0xa
+ 1375 00d1 00       		.byte	0
+ 1376 00d2 00       		.byte	0
+ 1377 00d3 12       		.uleb128 0x12
+ 1378 00d4 0D       		.uleb128 0xd
+ 1379 00d5 00       		.byte	0
+ 1380 00d6 03       		.uleb128 0x3
+ 1381 00d7 08       		.uleb128 0x8
+ 1382 00d8 3A       		.uleb128 0x3a
+ 1383 00d9 0B       		.uleb128 0xb
+ 1384 00da 3B       		.uleb128 0x3b
+ 1385 00db 05       		.uleb128 0x5
+ 1386 00dc 49       		.uleb128 0x49
+ 1387 00dd 13       		.uleb128 0x13
+ 1388 00de 38       		.uleb128 0x38
+ 1389 00df 0A       		.uleb128 0xa
+ 1390 00e0 00       		.byte	0
+ 1391 00e1 00       		.byte	0
+ 1392 00e2 13       		.uleb128 0x13
+ 1393 00e3 15       		.uleb128 0x15
+ 1394 00e4 01       		.byte	0x1
+ 1395 00e5 27       		.uleb128 0x27
+ 1396 00e6 0C       		.uleb128 0xc
+ 1397 00e7 01       		.uleb128 0x1
+ 1398 00e8 13       		.uleb128 0x13
+ 1399 00e9 00       		.byte	0
+ 1400 00ea 00       		.byte	0
+ 1401 00eb 14       		.uleb128 0x14
+ 1402 00ec 05       		.uleb128 0x5
+ 1403 00ed 00       		.byte	0
+ 1404 00ee 49       		.uleb128 0x49
+ 1405 00ef 13       		.uleb128 0x13
+ 1406 00f0 00       		.byte	0
+ 1407 00f1 00       		.byte	0
+ 1408 00f2 15       		.uleb128 0x15
+ 1409 00f3 13       		.uleb128 0x13
+ 1410 00f4 01       		.byte	0x1
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 26
+
+
+ 1411 00f5 0B       		.uleb128 0xb
+ 1412 00f6 0B       		.uleb128 0xb
+ 1413 00f7 3A       		.uleb128 0x3a
+ 1414 00f8 0B       		.uleb128 0xb
+ 1415 00f9 3B       		.uleb128 0x3b
+ 1416 00fa 05       		.uleb128 0x5
+ 1417 00fb 01       		.uleb128 0x1
+ 1418 00fc 13       		.uleb128 0x13
+ 1419 00fd 00       		.byte	0
+ 1420 00fe 00       		.byte	0
+ 1421 00ff 16       		.uleb128 0x16
+ 1422 0100 16       		.uleb128 0x16
+ 1423 0101 00       		.byte	0
+ 1424 0102 03       		.uleb128 0x3
+ 1425 0103 0E       		.uleb128 0xe
+ 1426 0104 3A       		.uleb128 0x3a
+ 1427 0105 0B       		.uleb128 0xb
+ 1428 0106 3B       		.uleb128 0x3b
+ 1429 0107 05       		.uleb128 0x5
+ 1430 0108 49       		.uleb128 0x49
+ 1431 0109 13       		.uleb128 0x13
+ 1432 010a 00       		.byte	0
+ 1433 010b 00       		.byte	0
+ 1434 010c 17       		.uleb128 0x17
+ 1435 010d 26       		.uleb128 0x26
+ 1436 010e 00       		.byte	0
+ 1437 010f 49       		.uleb128 0x49
+ 1438 0110 13       		.uleb128 0x13
+ 1439 0111 00       		.byte	0
+ 1440 0112 00       		.byte	0
+ 1441 0113 18       		.uleb128 0x18
+ 1442 0114 13       		.uleb128 0x13
+ 1443 0115 01       		.byte	0x1
+ 1444 0116 03       		.uleb128 0x3
+ 1445 0117 0E       		.uleb128 0xe
+ 1446 0118 0B       		.uleb128 0xb
+ 1447 0119 0B       		.uleb128 0xb
+ 1448 011a 3A       		.uleb128 0x3a
+ 1449 011b 0B       		.uleb128 0xb
+ 1450 011c 3B       		.uleb128 0x3b
+ 1451 011d 0B       		.uleb128 0xb
+ 1452 011e 01       		.uleb128 0x1
+ 1453 011f 13       		.uleb128 0x13
+ 1454 0120 00       		.byte	0
+ 1455 0121 00       		.byte	0
+ 1456 0122 19       		.uleb128 0x19
+ 1457 0123 2E       		.uleb128 0x2e
+ 1458 0124 01       		.byte	0x1
+ 1459 0125 3F       		.uleb128 0x3f
+ 1460 0126 0C       		.uleb128 0xc
+ 1461 0127 03       		.uleb128 0x3
+ 1462 0128 0E       		.uleb128 0xe
+ 1463 0129 3A       		.uleb128 0x3a
+ 1464 012a 0B       		.uleb128 0xb
+ 1465 012b 3B       		.uleb128 0x3b
+ 1466 012c 0B       		.uleb128 0xb
+ 1467 012d 27       		.uleb128 0x27
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 27
+
+
+ 1468 012e 0C       		.uleb128 0xc
+ 1469 012f 11       		.uleb128 0x11
+ 1470 0130 01       		.uleb128 0x1
+ 1471 0131 12       		.uleb128 0x12
+ 1472 0132 01       		.uleb128 0x1
+ 1473 0133 40       		.uleb128 0x40
+ 1474 0134 06       		.uleb128 0x6
+ 1475 0135 9742     		.uleb128 0x2117
+ 1476 0137 0C       		.uleb128 0xc
+ 1477 0138 01       		.uleb128 0x1
+ 1478 0139 13       		.uleb128 0x13
+ 1479 013a 00       		.byte	0
+ 1480 013b 00       		.byte	0
+ 1481 013c 1A       		.uleb128 0x1a
+ 1482 013d 05       		.uleb128 0x5
+ 1483 013e 00       		.byte	0
+ 1484 013f 03       		.uleb128 0x3
+ 1485 0140 0E       		.uleb128 0xe
+ 1486 0141 3A       		.uleb128 0x3a
+ 1487 0142 0B       		.uleb128 0xb
+ 1488 0143 3B       		.uleb128 0x3b
+ 1489 0144 0B       		.uleb128 0xb
+ 1490 0145 49       		.uleb128 0x49
+ 1491 0146 13       		.uleb128 0x13
+ 1492 0147 02       		.uleb128 0x2
+ 1493 0148 06       		.uleb128 0x6
+ 1494 0149 00       		.byte	0
+ 1495 014a 00       		.byte	0
+ 1496 014b 1B       		.uleb128 0x1b
+ 1497 014c 34       		.uleb128 0x34
+ 1498 014d 00       		.byte	0
+ 1499 014e 03       		.uleb128 0x3
+ 1500 014f 0E       		.uleb128 0xe
+ 1501 0150 3A       		.uleb128 0x3a
+ 1502 0151 0B       		.uleb128 0xb
+ 1503 0152 3B       		.uleb128 0x3b
+ 1504 0153 0B       		.uleb128 0xb
+ 1505 0154 49       		.uleb128 0x49
+ 1506 0155 13       		.uleb128 0x13
+ 1507 0156 02       		.uleb128 0x2
+ 1508 0157 0A       		.uleb128 0xa
+ 1509 0158 00       		.byte	0
+ 1510 0159 00       		.byte	0
+ 1511 015a 1C       		.uleb128 0x1c
+ 1512 015b 898201   		.uleb128 0x4109
+ 1513 015e 01       		.byte	0x1
+ 1514 015f 11       		.uleb128 0x11
+ 1515 0160 01       		.uleb128 0x1
+ 1516 0161 31       		.uleb128 0x31
+ 1517 0162 13       		.uleb128 0x13
+ 1518 0163 01       		.uleb128 0x1
+ 1519 0164 13       		.uleb128 0x13
+ 1520 0165 00       		.byte	0
+ 1521 0166 00       		.byte	0
+ 1522 0167 1D       		.uleb128 0x1d
+ 1523 0168 8A8201   		.uleb128 0x410a
+ 1524 016b 00       		.byte	0
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 28
+
+
+ 1525 016c 02       		.uleb128 0x2
+ 1526 016d 0A       		.uleb128 0xa
+ 1527 016e 9142     		.uleb128 0x2111
+ 1528 0170 0A       		.uleb128 0xa
+ 1529 0171 00       		.byte	0
+ 1530 0172 00       		.byte	0
+ 1531 0173 1E       		.uleb128 0x1e
+ 1532 0174 898201   		.uleb128 0x4109
+ 1533 0177 01       		.byte	0x1
+ 1534 0178 11       		.uleb128 0x11
+ 1535 0179 01       		.uleb128 0x1
+ 1536 017a 9542     		.uleb128 0x2115
+ 1537 017c 0C       		.uleb128 0xc
+ 1538 017d 31       		.uleb128 0x31
+ 1539 017e 13       		.uleb128 0x13
+ 1540 017f 00       		.byte	0
+ 1541 0180 00       		.byte	0
+ 1542 0181 1F       		.uleb128 0x1f
+ 1543 0182 898201   		.uleb128 0x4109
+ 1544 0185 00       		.byte	0
+ 1545 0186 11       		.uleb128 0x11
+ 1546 0187 01       		.uleb128 0x1
+ 1547 0188 9542     		.uleb128 0x2115
+ 1548 018a 0C       		.uleb128 0xc
+ 1549 018b 31       		.uleb128 0x31
+ 1550 018c 13       		.uleb128 0x13
+ 1551 018d 00       		.byte	0
+ 1552 018e 00       		.byte	0
+ 1553 018f 20       		.uleb128 0x20
+ 1554 0190 2E       		.uleb128 0x2e
+ 1555 0191 01       		.byte	0x1
+ 1556 0192 3F       		.uleb128 0x3f
+ 1557 0193 0C       		.uleb128 0xc
+ 1558 0194 03       		.uleb128 0x3
+ 1559 0195 0E       		.uleb128 0xe
+ 1560 0196 3A       		.uleb128 0x3a
+ 1561 0197 0B       		.uleb128 0xb
+ 1562 0198 3B       		.uleb128 0x3b
+ 1563 0199 0B       		.uleb128 0xb
+ 1564 019a 27       		.uleb128 0x27
+ 1565 019b 0C       		.uleb128 0xc
+ 1566 019c 11       		.uleb128 0x11
+ 1567 019d 01       		.uleb128 0x1
+ 1568 019e 12       		.uleb128 0x12
+ 1569 019f 01       		.uleb128 0x1
+ 1570 01a0 40       		.uleb128 0x40
+ 1571 01a1 0A       		.uleb128 0xa
+ 1572 01a2 9742     		.uleb128 0x2117
+ 1573 01a4 0C       		.uleb128 0xc
+ 1574 01a5 01       		.uleb128 0x1
+ 1575 01a6 13       		.uleb128 0x13
+ 1576 01a7 00       		.byte	0
+ 1577 01a8 00       		.byte	0
+ 1578 01a9 21       		.uleb128 0x21
+ 1579 01aa 05       		.uleb128 0x5
+ 1580 01ab 00       		.byte	0
+ 1581 01ac 03       		.uleb128 0x3
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 29
+
+
+ 1582 01ad 0E       		.uleb128 0xe
+ 1583 01ae 3A       		.uleb128 0x3a
+ 1584 01af 0B       		.uleb128 0xb
+ 1585 01b0 3B       		.uleb128 0x3b
+ 1586 01b1 0B       		.uleb128 0xb
+ 1587 01b2 49       		.uleb128 0x49
+ 1588 01b3 13       		.uleb128 0x13
+ 1589 01b4 02       		.uleb128 0x2
+ 1590 01b5 0A       		.uleb128 0xa
+ 1591 01b6 00       		.byte	0
+ 1592 01b7 00       		.byte	0
+ 1593 01b8 22       		.uleb128 0x22
+ 1594 01b9 2E       		.uleb128 0x2e
+ 1595 01ba 01       		.byte	0x1
+ 1596 01bb 3F       		.uleb128 0x3f
+ 1597 01bc 0C       		.uleb128 0xc
+ 1598 01bd 03       		.uleb128 0x3
+ 1599 01be 0E       		.uleb128 0xe
+ 1600 01bf 3A       		.uleb128 0x3a
+ 1601 01c0 0B       		.uleb128 0xb
+ 1602 01c1 3B       		.uleb128 0x3b
+ 1603 01c2 0B       		.uleb128 0xb
+ 1604 01c3 27       		.uleb128 0x27
+ 1605 01c4 0C       		.uleb128 0xc
+ 1606 01c5 49       		.uleb128 0x49
+ 1607 01c6 13       		.uleb128 0x13
+ 1608 01c7 11       		.uleb128 0x11
+ 1609 01c8 01       		.uleb128 0x1
+ 1610 01c9 12       		.uleb128 0x12
+ 1611 01ca 01       		.uleb128 0x1
+ 1612 01cb 40       		.uleb128 0x40
+ 1613 01cc 0A       		.uleb128 0xa
+ 1614 01cd 9742     		.uleb128 0x2117
+ 1615 01cf 0C       		.uleb128 0xc
+ 1616 01d0 01       		.uleb128 0x1
+ 1617 01d1 13       		.uleb128 0x13
+ 1618 01d2 00       		.byte	0
+ 1619 01d3 00       		.byte	0
+ 1620 01d4 23       		.uleb128 0x23
+ 1621 01d5 34       		.uleb128 0x34
+ 1622 01d6 00       		.byte	0
+ 1623 01d7 03       		.uleb128 0x3
+ 1624 01d8 0E       		.uleb128 0xe
+ 1625 01d9 3A       		.uleb128 0x3a
+ 1626 01da 0B       		.uleb128 0xb
+ 1627 01db 3B       		.uleb128 0x3b
+ 1628 01dc 05       		.uleb128 0x5
+ 1629 01dd 49       		.uleb128 0x49
+ 1630 01de 13       		.uleb128 0x13
+ 1631 01df 3F       		.uleb128 0x3f
+ 1632 01e0 0C       		.uleb128 0xc
+ 1633 01e1 3C       		.uleb128 0x3c
+ 1634 01e2 0C       		.uleb128 0xc
+ 1635 01e3 00       		.byte	0
+ 1636 01e4 00       		.byte	0
+ 1637 01e5 24       		.uleb128 0x24
+ 1638 01e6 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 30
+
+
+ 1639 01e7 01       		.byte	0x1
+ 1640 01e8 3F       		.uleb128 0x3f
+ 1641 01e9 0C       		.uleb128 0xc
+ 1642 01ea 03       		.uleb128 0x3
+ 1643 01eb 0E       		.uleb128 0xe
+ 1644 01ec 3A       		.uleb128 0x3a
+ 1645 01ed 0B       		.uleb128 0xb
+ 1646 01ee 3B       		.uleb128 0x3b
+ 1647 01ef 05       		.uleb128 0x5
+ 1648 01f0 27       		.uleb128 0x27
+ 1649 01f1 0C       		.uleb128 0xc
+ 1650 01f2 3C       		.uleb128 0x3c
+ 1651 01f3 0C       		.uleb128 0xc
+ 1652 01f4 01       		.uleb128 0x1
+ 1653 01f5 13       		.uleb128 0x13
+ 1654 01f6 00       		.byte	0
+ 1655 01f7 00       		.byte	0
+ 1656 01f8 25       		.uleb128 0x25
+ 1657 01f9 2E       		.uleb128 0x2e
+ 1658 01fa 01       		.byte	0x1
+ 1659 01fb 3F       		.uleb128 0x3f
+ 1660 01fc 0C       		.uleb128 0xc
+ 1661 01fd 03       		.uleb128 0x3
+ 1662 01fe 0E       		.uleb128 0xe
+ 1663 01ff 3A       		.uleb128 0x3a
+ 1664 0200 0B       		.uleb128 0xb
+ 1665 0201 3B       		.uleb128 0x3b
+ 1666 0202 0B       		.uleb128 0xb
+ 1667 0203 27       		.uleb128 0x27
+ 1668 0204 0C       		.uleb128 0xc
+ 1669 0205 3C       		.uleb128 0x3c
+ 1670 0206 0C       		.uleb128 0xc
+ 1671 0207 01       		.uleb128 0x1
+ 1672 0208 13       		.uleb128 0x13
+ 1673 0209 00       		.byte	0
+ 1674 020a 00       		.byte	0
+ 1675 020b 26       		.uleb128 0x26
+ 1676 020c 2E       		.uleb128 0x2e
+ 1677 020d 01       		.byte	0x1
+ 1678 020e 3F       		.uleb128 0x3f
+ 1679 020f 0C       		.uleb128 0xc
+ 1680 0210 03       		.uleb128 0x3
+ 1681 0211 0E       		.uleb128 0xe
+ 1682 0212 3A       		.uleb128 0x3a
+ 1683 0213 0B       		.uleb128 0xb
+ 1684 0214 3B       		.uleb128 0x3b
+ 1685 0215 0B       		.uleb128 0xb
+ 1686 0216 27       		.uleb128 0x27
+ 1687 0217 0C       		.uleb128 0xc
+ 1688 0218 3C       		.uleb128 0x3c
+ 1689 0219 0C       		.uleb128 0xc
+ 1690 021a 00       		.byte	0
+ 1691 021b 00       		.byte	0
+ 1692 021c 00       		.byte	0
+ 1693              		.section	.debug_loc,"",%progbits
+ 1694              	.Ldebug_loc0:
+ 1695              	.LLST0:
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 31
+
+
+ 1696 0000 00000000 		.4byte	.LFB118
+ 1697 0004 02000000 		.4byte	.LCFI0
+ 1698 0008 0200     		.2byte	0x2
+ 1699 000a 7D       		.byte	0x7d
+ 1700 000b 00       		.sleb128 0
+ 1701 000c 02000000 		.4byte	.LCFI0
+ 1702 0010 44000000 		.4byte	.LFE118
+ 1703 0014 0200     		.2byte	0x2
+ 1704 0016 7D       		.byte	0x7d
+ 1705 0017 10       		.sleb128 16
+ 1706 0018 00000000 		.4byte	0
+ 1707 001c 00000000 		.4byte	0
+ 1708              	.LLST1:
+ 1709 0020 00000000 		.4byte	.LVL0
+ 1710 0024 06000000 		.4byte	.LVL1
+ 1711 0028 0100     		.2byte	0x1
+ 1712 002a 50       		.byte	0x50
+ 1713 002b 06000000 		.4byte	.LVL1
+ 1714 002f 44000000 		.4byte	.LFE118
+ 1715 0033 0100     		.2byte	0x1
+ 1716 0035 55       		.byte	0x55
+ 1717 0036 00000000 		.4byte	0
+ 1718 003a 00000000 		.4byte	0
+ 1719              	.LLST2:
+ 1720 003e 00000000 		.4byte	.LFB119
+ 1721 0042 02000000 		.4byte	.LCFI1
+ 1722 0046 0200     		.2byte	0x2
+ 1723 0048 7D       		.byte	0x7d
+ 1724 0049 00       		.sleb128 0
+ 1725 004a 02000000 		.4byte	.LCFI1
+ 1726 004e 1E000000 		.4byte	.LFE119
+ 1727 0052 0200     		.2byte	0x2
+ 1728 0054 7D       		.byte	0x7d
+ 1729 0055 04       		.sleb128 4
+ 1730 0056 00000000 		.4byte	0
+ 1731 005a 00000000 		.4byte	0
+ 1732              	.LLST3:
+ 1733 005e 00000000 		.4byte	.LVL4
+ 1734 0062 0A000000 		.4byte	.LVL5
+ 1735 0066 0100     		.2byte	0x1
+ 1736 0068 50       		.byte	0x50
+ 1737 0069 0A000000 		.4byte	.LVL5
+ 1738 006d 1D000000 		.4byte	.LVL8-1
+ 1739 0071 0100     		.2byte	0x1
+ 1740 0073 53       		.byte	0x53
+ 1741 0074 1D000000 		.4byte	.LVL8-1
+ 1742 0078 1E000000 		.4byte	.LFE119
+ 1743 007c 0400     		.2byte	0x4
+ 1744 007e F3       		.byte	0xf3
+ 1745 007f 01       		.uleb128 0x1
+ 1746 0080 50       		.byte	0x50
+ 1747 0081 9F       		.byte	0x9f
+ 1748 0082 00000000 		.4byte	0
+ 1749 0086 00000000 		.4byte	0
+ 1750              	.LLST4:
+ 1751 008a 00000000 		.4byte	.LVL4
+ 1752 008e 10000000 		.4byte	.LVL6
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 32
+
+
+ 1753 0092 0100     		.2byte	0x1
+ 1754 0094 51       		.byte	0x51
+ 1755 0095 10000000 		.4byte	.LVL6
+ 1756 0099 18000000 		.4byte	.LVL7
+ 1757 009d 1600     		.2byte	0x16
+ 1758 009f 72       		.byte	0x72
+ 1759 00a0 00       		.sleb128 0
+ 1760 00a1 12       		.byte	0x12
+ 1761 00a2 0A       		.byte	0xa
+ 1762 00a3 FFFF     		.2byte	0xffff
+ 1763 00a5 1A       		.byte	0x1a
+ 1764 00a6 74       		.byte	0x74
+ 1765 00a7 00       		.sleb128 0
+ 1766 00a8 16       		.byte	0x16
+ 1767 00a9 14       		.byte	0x14
+ 1768 00aa 0A       		.byte	0xa
+ 1769 00ab FFFF     		.2byte	0xffff
+ 1770 00ad 1A       		.byte	0x1a
+ 1771 00ae 2B       		.byte	0x2b
+ 1772 00af 28       		.byte	0x28
+ 1773 00b0 0100     		.2byte	0x1
+ 1774 00b2 16       		.byte	0x16
+ 1775 00b3 13       		.byte	0x13
+ 1776 00b4 9F       		.byte	0x9f
+ 1777 00b5 00000000 		.4byte	0
+ 1778 00b9 00000000 		.4byte	0
+ 1779              	.LLST5:
+ 1780 00bd 00000000 		.4byte	.LVL11
+ 1781 00c1 02000000 		.4byte	.LVL12
+ 1782 00c5 0100     		.2byte	0x1
+ 1783 00c7 50       		.byte	0x50
+ 1784 00c8 02000000 		.4byte	.LVL12
+ 1785 00cc 04000000 		.4byte	.LFE122
+ 1786 00d0 0400     		.2byte	0x4
+ 1787 00d2 F3       		.byte	0xf3
+ 1788 00d3 01       		.uleb128 0x1
+ 1789 00d4 50       		.byte	0x50
+ 1790 00d5 9F       		.byte	0x9f
+ 1791 00d6 00000000 		.4byte	0
+ 1792 00da 00000000 		.4byte	0
+ 1793              	.LLST6:
+ 1794 00de 00000000 		.4byte	.LVL13
+ 1795 00e2 02000000 		.4byte	.LVL14
+ 1796 00e6 0100     		.2byte	0x1
+ 1797 00e8 50       		.byte	0x50
+ 1798 00e9 02000000 		.4byte	.LVL14
+ 1799 00ed 04000000 		.4byte	.LFE123
+ 1800 00f1 0400     		.2byte	0x4
+ 1801 00f3 F3       		.byte	0xf3
+ 1802 00f4 01       		.uleb128 0x1
+ 1803 00f5 50       		.byte	0x50
+ 1804 00f6 9F       		.byte	0x9f
+ 1805 00f7 00000000 		.4byte	0
+ 1806 00fb 00000000 		.4byte	0
+ 1807              		.section	.debug_aranges,"",%progbits
+ 1808 0000 44000000 		.4byte	0x44
+ 1809 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 33
+
+
+ 1810 0006 00000000 		.4byte	.Ldebug_info0
+ 1811 000a 04       		.byte	0x4
+ 1812 000b 00       		.byte	0
+ 1813 000c 0000     		.2byte	0
+ 1814 000e 0000     		.2byte	0
+ 1815 0010 00000000 		.4byte	.LFB118
+ 1816 0014 44000000 		.4byte	.LFE118-.LFB118
+ 1817 0018 00000000 		.4byte	.LFB119
+ 1818 001c 1E000000 		.4byte	.LFE119-.LFB119
+ 1819 0020 00000000 		.4byte	.LFB120
+ 1820 0024 04000000 		.4byte	.LFE120-.LFB120
+ 1821 0028 00000000 		.4byte	.LFB121
+ 1822 002c 04000000 		.4byte	.LFE121-.LFB121
+ 1823 0030 00000000 		.4byte	.LFB122
+ 1824 0034 04000000 		.4byte	.LFE122-.LFB122
+ 1825 0038 00000000 		.4byte	.LFB123
+ 1826 003c 04000000 		.4byte	.LFE123-.LFB123
+ 1827 0040 00000000 		.4byte	0
+ 1828 0044 00000000 		.4byte	0
+ 1829              		.section	.debug_ranges,"",%progbits
+ 1830              	.Ldebug_ranges0:
+ 1831 0000 00000000 		.4byte	.LFB118
+ 1832 0004 44000000 		.4byte	.LFE118
+ 1833 0008 00000000 		.4byte	.LFB119
+ 1834 000c 1E000000 		.4byte	.LFE119
+ 1835 0010 00000000 		.4byte	.LFB120
+ 1836 0014 04000000 		.4byte	.LFE120
+ 1837 0018 00000000 		.4byte	.LFB121
+ 1838 001c 04000000 		.4byte	.LFE121
+ 1839 0020 00000000 		.4byte	.LFB122
+ 1840 0024 04000000 		.4byte	.LFE122
+ 1841 0028 00000000 		.4byte	.LFB123
+ 1842 002c 04000000 		.4byte	.LFE123
+ 1843 0030 00000000 		.4byte	0
+ 1844 0034 00000000 		.4byte	0
+ 1845              		.section	.debug_line,"",%progbits
+ 1846              	.Ldebug_line0:
+ 1847 0000 E9010000 		.section	.debug_str,"MS",%progbits,1
+ 1847      02007801 
+ 1847      00000201 
+ 1847      FB0E0D00 
+ 1847      01010101 
+ 1848              	.LASF25:
+ 1849 0000 4750494F 		.ascii	"GPIO_TypeDef\000"
+ 1849      5F547970 
+ 1849      65446566 
+ 1849      00
+ 1850              	.LASF43:
+ 1851 000d 43434552 		.ascii	"CCER\000"
+ 1851      00
+ 1852              	.LASF75:
+ 1853 0012 5F70616C 		.ascii	"_pal_lld_setgroupmode\000"
+ 1853      5F6C6C64 
+ 1853      5F736574 
+ 1853      67726F75 
+ 1853      706D6F64 
+ 1854              	.LASF45:
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 34
+
+
+ 1855 0028 444D4152 		.ascii	"DMAR\000"
+ 1855      00
+ 1856              	.LASF64:
+ 1857 002d 53657276 		.ascii	"Servo\000"
+ 1857      6F00
+ 1858              	.LASF34:
+ 1859 0033 73746174 		.ascii	"state\000"
+ 1859      6500
+ 1860              	.LASF42:
+ 1861 0039 43434D52 		.ascii	"CCMR2\000"
+ 1861      3200
+ 1862              	.LASF46:
+ 1863 003f 43434D52 		.ascii	"CCMR3\000"
+ 1863      3300
+ 1864              	.LASF3:
+ 1865 0045 73686F72 		.ascii	"short int\000"
+ 1865      7420696E 
+ 1865      7400
+ 1866              	.LASF78:
+ 1867 004f 73657276 		.ascii	"servo.c\000"
+ 1867      6F2E6300 
+ 1868              	.LASF52:
+ 1869 0057 70776D63 		.ascii	"pwmcnt_t\000"
+ 1869      6E745F74 
+ 1869      00
+ 1870              	.LASF24:
+ 1871 0060 41465248 		.ascii	"AFRH\000"
+ 1871      00
+ 1872              	.LASF14:
+ 1873 0065 73697A65 		.ascii	"sizetype\000"
+ 1873      74797065 
+ 1873      00
+ 1874              	.LASF65:
+ 1875 006e 73657276 		.ascii	"servoInit\000"
+ 1875      6F496E69 
+ 1875      7400
+ 1876              	.LASF74:
+ 1877 0078 70776D63 		.ascii	"pwmcfg\000"
+ 1877      666700
+ 1878              	.LASF51:
+ 1879 007f 70776D63 		.ascii	"pwmchannel_t\000"
+ 1879      68616E6E 
+ 1879      656C5F74 
+ 1879      00
+ 1880              	.LASF53:
+ 1881 008c 6D6F6465 		.ascii	"mode\000"
+ 1881      00
+ 1882              	.LASF57:
+ 1883 0091 6368616E 		.ascii	"channels\000"
+ 1883      6E656C73 
+ 1883      00
+ 1884              	.LASF21:
+ 1885 009a 42535252 		.ascii	"BSRR\000"
+ 1885      00
+ 1886              	.LASF35:
+ 1887 009f 636F6E66 		.ascii	"config\000"
+ 1887      696700
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 35
+
+
+ 1888              	.LASF27:
+ 1889 00a6 696F6D6F 		.ascii	"iomode_t\000"
+ 1889      64655F74 
+ 1889      00
+ 1890              	.LASF4:
+ 1891 00af 75696E74 		.ascii	"uint8_t\000"
+ 1891      385F7400 
+ 1892              	.LASF81:
+ 1893 00b7 70776D45 		.ascii	"pwmEnableChannel\000"
+ 1893      6E61626C 
+ 1893      65436861 
+ 1893      6E6E656C 
+ 1893      00
+ 1894              	.LASF26:
+ 1895 00c8 696F706F 		.ascii	"ioportmask_t\000"
+ 1895      72746D61 
+ 1895      736B5F74 
+ 1895      00
+ 1896              	.LASF18:
+ 1897 00d5 4F545950 		.ascii	"OTYPER\000"
+ 1897      455200
+ 1898              	.LASF76:
+ 1899 00dc 70776D53 		.ascii	"pwmStart\000"
+ 1899      74617274 
+ 1899      00
+ 1900              	.LASF11:
+ 1901 00e5 6C6F6E67 		.ascii	"long long int\000"
+ 1901      206C6F6E 
+ 1901      6720696E 
+ 1901      7400
+ 1902              	.LASF69:
+ 1903 00f3 73657276 		.ascii	"servoSetMax\000"
+ 1903      6F536574 
+ 1903      4D617800 
+ 1904              	.LASF79:
+ 1905 00ff 433A5C43 		.ascii	"C:\\ChibiStudio\\chibios\\demos\\robotic_hand\000"
+ 1905      68696269 
+ 1905      53747564 
+ 1905      696F5C63 
+ 1905      68696269 
+ 1906              	.LASF8:
+ 1907 0129 6C6F6E67 		.ascii	"long int\000"
+ 1907      20696E74 
+ 1907      00
+ 1908              	.LASF63:
+ 1909 0132 70776D5F 		.ascii	"pwm_channel\000"
+ 1909      6368616E 
+ 1909      6E656C00 
+ 1910              	.LASF47:
+ 1911 013e 43435235 		.ascii	"CCR5\000"
+ 1911      00
+ 1912              	.LASF48:
+ 1913 0143 43435236 		.ascii	"CCR6\000"
+ 1913      00
+ 1914              	.LASF36:
+ 1915 0148 70657269 		.ascii	"period\000"
+ 1915      6F6400
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 36
+
+
+ 1916              	.LASF17:
+ 1917 014f 4D4F4445 		.ascii	"MODER\000"
+ 1917      5200
+ 1918              	.LASF16:
+ 1919 0155 636C6561 		.ascii	"clear\000"
+ 1919      7200
+ 1920              	.LASF41:
+ 1921 015b 43434D52 		.ascii	"CCMR1\000"
+ 1921      3100
+ 1922              	.LASF71:
+ 1923 0161 73657276 		.ascii	"servoGetMax\000"
+ 1923      6F476574 
+ 1923      4D617800 
+ 1924              	.LASF59:
+ 1925 016d 50574D43 		.ascii	"PWMConfig\000"
+ 1925      6F6E6669 
+ 1925      6700
+ 1926              	.LASF70:
+ 1927 0177 73657276 		.ascii	"servoSetMin\000"
+ 1927      6F536574 
+ 1927      4D696E00 
+ 1928              	.LASF28:
+ 1929 0183 696F706F 		.ascii	"ioportid_t\000"
+ 1929      72746964 
+ 1929      5F7400
+ 1930              	.LASF39:
+ 1931 018e 534D4352 		.ascii	"SMCR\000"
+ 1931      00
+ 1932              	.LASF29:
+ 1933 0193 50574D5F 		.ascii	"PWM_UNINIT\000"
+ 1933      554E494E 
+ 1933      495400
+ 1934              	.LASF2:
+ 1935 019e 756E7369 		.ascii	"unsigned char\000"
+ 1935      676E6564 
+ 1935      20636861 
+ 1935      7200
+ 1936              	.LASF72:
+ 1937 01ac 73657276 		.ascii	"servoGetMin\000"
+ 1937      6F476574 
+ 1937      4D696E00 
+ 1938              	.LASF1:
+ 1939 01b8 7369676E 		.ascii	"signed char\000"
+ 1939      65642063 
+ 1939      68617200 
+ 1940              	.LASF12:
+ 1941 01c4 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1941      206C6F6E 
+ 1941      6720756E 
+ 1941      7369676E 
+ 1941      65642069 
+ 1942              	.LASF9:
+ 1943 01db 75696E74 		.ascii	"uint32_t\000"
+ 1943      33325F74 
+ 1943      00
+ 1944              	.LASF0:
+ 1945 01e4 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 37
+
+
+ 1945      676E6564 
+ 1945      20696E74 
+ 1945      00
+ 1946              	.LASF5:
+ 1947 01f1 75696E74 		.ascii	"uint16_t\000"
+ 1947      31365F74 
+ 1947      00
+ 1948              	.LASF44:
+ 1949 01fa 42445452 		.ascii	"BDTR\000"
+ 1949      00
+ 1950              	.LASF40:
+ 1951 01ff 44494552 		.ascii	"DIER\000"
+ 1951      00
+ 1952              	.LASF20:
+ 1953 0204 50555044 		.ascii	"PUPDR\000"
+ 1953      5200
+ 1954              	.LASF38:
+ 1955 020a 70776D63 		.ascii	"pwmcallback_t\000"
+ 1955      616C6C62 
+ 1955      61636B5F 
+ 1955      7400
+ 1956              	.LASF23:
+ 1957 0218 4146524C 		.ascii	"AFRL\000"
+ 1957      00
+ 1958              	.LASF6:
+ 1959 021d 73686F72 		.ascii	"short unsigned int\000"
+ 1959      7420756E 
+ 1959      7369676E 
+ 1959      65642069 
+ 1959      6E7400
+ 1960              	.LASF15:
+ 1961 0230 63686172 		.ascii	"char\000"
+ 1961      00
+ 1962              	.LASF49:
+ 1963 0235 73746D33 		.ascii	"stm32_tim_t\000"
+ 1963      325F7469 
+ 1963      6D5F7400 
+ 1964              	.LASF33:
+ 1965 0241 50574D44 		.ascii	"PWMDriver\000"
+ 1965      72697665 
+ 1965      7200
+ 1966              	.LASF7:
+ 1967 024b 696E7433 		.ascii	"int32_t\000"
+ 1967      325F7400 
+ 1968              	.LASF13:
+ 1969 0253 5F426F6F 		.ascii	"_Bool\000"
+ 1969      6C00
+ 1970              	.LASF66:
+ 1971 0259 73657276 		.ascii	"servoSetValue\000"
+ 1971      6F536574 
+ 1971      56616C75 
+ 1971      6500
+ 1972              	.LASF61:
+ 1973 0267 706F7274 		.ascii	"port\000"
+ 1973      00
+ 1974              	.LASF19:
+ 1975 026c 4F535045 		.ascii	"OSPEEDR\000"
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 38
+
+
+ 1975      45445200 
+ 1976              	.LASF60:
+ 1977 0274 53657276 		.ascii	"Servo_t\000"
+ 1977      6F5F7400 
+ 1978              	.LASF10:
+ 1979 027c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1979      20756E73 
+ 1979      69676E65 
+ 1979      6420696E 
+ 1979      7400
+ 1980              	.LASF37:
+ 1981 028e 636C6F63 		.ascii	"clock\000"
+ 1981      6B00
+ 1982              	.LASF62:
+ 1983 0294 70776D5F 		.ascii	"pwm_driver\000"
+ 1983      64726976 
+ 1983      657200
+ 1984              	.LASF77:
+ 1985 029f 474E5520 		.ascii	"GNU C 4.7.4 20140401 (release) [ARM/embedded-4_7-br"
+ 1985      4320342E 
+ 1985      372E3420 
+ 1985      32303134 
+ 1985      30343031 
+ 1986 02d2 616E6368 		.ascii	"anch revision 209195]\000"
+ 1986      20726576 
+ 1986      6973696F 
+ 1986      6E203230 
+ 1986      39313935 
+ 1987              	.LASF31:
+ 1988 02e8 50574D5F 		.ascii	"PWM_READY\000"
+ 1988      52454144 
+ 1988      5900
+ 1989              	.LASF30:
+ 1990 02f2 50574D5F 		.ascii	"PWM_STOP\000"
+ 1990      53544F50 
+ 1990      00
+ 1991              	.LASF58:
+ 1992 02fb 64696572 		.ascii	"dier\000"
+ 1992      00
+ 1993              	.LASF56:
+ 1994 0300 66726571 		.ascii	"frequency\000"
+ 1994      75656E63 
+ 1994      7900
+ 1995              	.LASF55:
+ 1996 030a 50574D43 		.ascii	"PWMChannelConfig\000"
+ 1996      68616E6E 
+ 1996      656C436F 
+ 1996      6E666967 
+ 1996      00
+ 1997              	.LASF73:
+ 1998 031b 63686366 		.ascii	"chcfg\000"
+ 1998      6700
+ 1999              	.LASF50:
+ 2000 0321 70776D6D 		.ascii	"pwmmode_t\000"
+ 2000      6F64655F 
+ 2000      7400
+ 2001              	.LASF80:
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 39
+
+
+ 2002 032b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2002      52784275 
+ 2002      66666572 
+ 2002      00
+ 2003              	.LASF68:
+ 2004 0338 76616C75 		.ascii	"value\000"
+ 2004      6500
+ 2005              	.LASF32:
+ 2006 033e 70776D73 		.ascii	"pwmstate_t\000"
+ 2006      74617465 
+ 2006      5F7400
+ 2007              	.LASF22:
+ 2008 0349 4C434B52 		.ascii	"LCKR\000"
+ 2008      00
+ 2009              	.LASF67:
+ 2010 034e 73657276 		.ascii	"servo\000"
+ 2010      6F00
+ 2011              	.LASF54:
+ 2012 0354 63616C6C 		.ascii	"callback\000"
+ 2012      6261636B 
+ 2012      00
+ 2013              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-br
+ARM GAS  C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 servo.c
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:19     .text.servoInit:00000000 $t
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:25     .text.servoInit:00000000 servoInit
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:209    .data.pwmcfg:00000000 .LANCHOR0
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:77     .text.servoSetValue:00000000 $t
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:83     .text.servoSetValue:00000000 servoSetValue
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:122    .text.servoSetMax:00000000 $t
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:128    .text.servoSetMax:00000000 servoSetMax
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:143    .text.servoSetMin:00000000 $t
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:149    .text.servoSetMin:00000000 servoSetMin
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:164    .text.servoGetMax:00000000 $t
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:170    .text.servoGetMax:00000000 servoGetMax
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:186    .text.servoGetMin:00000000 $t
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:192    .text.servoGetMin:00000000 servoGetMin
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:208    .data.pwmcfg:00000000 $d
+C:\Users\Gaetano\AppData\Local\Temp\cc5Hlu00.s:212    .data.pwmcfg:00000000 pwmcfg
+                     .debug_frame:00000010 $d
+
+UNDEFINED SYMBOLS
+_pal_lld_setgroupmode
+pwmStart
+pwmEnableChannel
