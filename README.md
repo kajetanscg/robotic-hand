@@ -2,7 +2,7 @@
 *A simple library to control a robotic hand prototype by using an external controller.*
 
 
-<img src="image.jpg" width="650"/>
+<img src="image.jpg" width="450"/>
 
 **Notes:**
 <br>The project runs on *ST STM32F3 Discovery ARMv7 32-bit Cortex-M4* through *ChibiOS/RT*.
